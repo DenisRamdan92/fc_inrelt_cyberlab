@@ -201,7 +201,7 @@
 
 					<?php if (check_menu('courses') || check_menu('material') || check_menu('lesson')) {?>
 						<li>
-							<a <?php echo active_url("courses");?> <?php echo active_url("material");?> <?php echo active_url("lesson","2");?> href="javascript:void(0);" data-toggle="collapse" data-target="#dashboard_dr"><i class="icon-graduation mr-10"></i>Courses <span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
+							<a <?php echo active_url("courses");?> <?php echo active_url("material");?> <?php echo active_url("lesson");?> href="javascript:void(0);" data-toggle="collapse" data-target="#dashboard_dr"><i class="icon-graduation mr-10"></i>Courses <span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
 							<ul id="dashboard_dr" class="collapse collapse-level-1">
 
 								<?php if (check_menu('courses')) {?>
@@ -226,17 +226,24 @@
 						</li>
 					<?php } ?>
 
-					<li>
-						<a  <?php echo active_url("offer");?> href="<?php echo base_url();?>offer" data-toggle="collapse" data-target="#"><i class="icon-trophy mr-10"></i>Offer</a>
-					</li>
 
-					<li>
-						<a  <?php echo active_url("gallery");?> href="<?php echo base_url();?>gallery" data-toggle="collapse" data-target="#"><i class="icon-picture mr-10"></i>Gallery</a>
-					</li>
+					<?php if (check_menu('offer')) {?>
+						<li>
+							<a  <?php echo active_url("offer");?> href="<?php echo base_url();?>offer" data-toggle="collapse" data-target="#"><i class="icon-trophy mr-10"></i>Offer</a>
+						</li>
+					<?php } ?>
 
-					<li>
-						<a  <?php echo active_url("contact");?> href="<?php echo base_url();?>contact" data-toggle="collapse" data-target="#"><i class="icon-phone mr-10"></i>Contact</a>
-					</li>
+					<?php if (check_menu('gallery')) {?>
+						<li>
+							<a  <?php echo active_url("gallery");?> href="<?php echo base_url();?>gallery" data-toggle="collapse" data-target="#"><i class="icon-picture mr-10"></i>Gallery</a>
+						</li>
+					<?php } ?>
+
+					<?php if (check_menu('contact')) {?>
+						<li>
+							<a  <?php echo active_url("contact");?> href="<?php echo base_url();?>contact" data-toggle="collapse" data-target="#"><i class="icon-phone mr-10"></i>Contact</a>
+						</li>
+					<?php } ?>
 
 					<?php if (check_menu('employee') || check_menu('student') || check_menu('teacher') || check_menu('user') || check_menu('usergroup')) {?>
 						<li>
@@ -340,9 +347,11 @@
 					</li>
 					<?php } ?>
 
-					<li>
-						<a  <?php echo active_url("about");?> href="<?php echo base_url();?>about" data-toggle="collapse" data-target="#"><i class="icon-info mr-10"></i>About</a>
-					</li>
+					<?php if (check_menu('about')) {?>
+						<li>
+							<a  <?php echo active_url("about");?> href="<?php echo base_url();?>about" data-toggle="collapse" data-target="#"><i class="icon-info mr-10"></i>About</a>
+						</li>
+					<?php } ?>
 
 				</ul>
 			</div>
