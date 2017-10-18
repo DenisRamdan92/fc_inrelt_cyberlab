@@ -1,0 +1,107 @@
+/**
+  * Color
+  * Border Color
+  * Background Color  
+*/
+
+/* Color 
+-------------------------------------------------------------- */
+/* Color #30a9de */
+a:hover,.main-content.blog-posts .entry-meta.style1 span a:hover,
+.social-links a,.bottom .container-bottom span a,.widget_recent-courses ul li .review-rating ul li a,
+.flat-socials > li > a:hover, .flat-information > li > a:hover,.footer .widget .recent-courses-news li .text a:hover,
+#mainnav .menu .has-sub:hover:before, #mainnav > ul > li > a:hover, #mainnav > ul > li.home > a,
+.show-search a i:hover, .post .date-post span, .post .title-post a:hover, .widget-categories ul li a:hover,
+.bottom .flat-socials-v1 li a:hover, .widget-text li a:hover, .widget_tweets ul li a:hover,
+.widget .featured-courses-news li .text a:hover, .widget .popular-news li .text a:hover,
+.widget .teacher-news li .text a:hover, .featured-courses-news .review-rating .flat-reviews li i,
+.review-stars i, .blog-posts .comment-post .comment-detail .comment-author a:hover, .blog-posts .comment-post .comment-detail .comment-date a:hover,
+.blog-posts .comment-post .comment-detail .comment-reply,.flat-counter .numb-count,
+.flat-counter .numb-count.percent:after,.flat-button.orange,.flat-row.join-us .numb-count,
+.post-lastest-new .entry-meta.style1 a:hover,.read-more, .read-more:after,a:hover, a.active, a:focus,
+label.modern-select:hover select, label.modern-select:hover:after,.portfolio-filter li a:hover,
+.main-content.blog-posts .entry-meta span a:hover,.wrap-share .share-post ul li a:hover, .wrap-share .share-post ul li:first-child a
+{
+	color: #30a9de;
+}
+
+/* Color #e53a40 */
+.main-content.blog-posts .entry-meta.style1 span a, 
+.bottom .container-bottom span a:hover,.post-lastest-new .entry-meta.style1 a {
+	color: #e53a40;
+}
+
+/* Border Color
+-------------------------------------------------------------- */
+/* Border color #30a9de */
+textarea:focus, input[type="text"]:focus, input[type="password"]:focus, 
+input[type="datetime"]:focus, input[type="datetime-local"]:focus, .sort-views a.active, .sort-views a:hover,
+input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, 
+input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, 
+input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus,
+.post .date-post,.widget-quick-contact textarea:focus, .widget-quick-contact input[type="email"]:focus,
+.flat-button.bg-orange,.flat-tabs ul.menu-tab li.active a, .flat-tabs ul.menu-tab li a:hover,
+.button-right.owl-theme .owl-controls .owl-nav div:hover,.testimonial-slider.owl-theme .owl-dots .owl-dot.active span:before,
+.flat-teacher .flat-socials > li:hover a, .flat-toggle:before, .flat-button.orange,.flat-button:hover,
+.blog-pagination .flat-pagination li a:hover, .blog-pagination .flat-pagination .active,
+label.modern-select:hover select, .tp-caption.flat-button-slider.bg-orange,.blog-pagination .flat-pagination li:hover
+{
+	border-color: #30a9de ;
+}
+
+/* Border color #e53a40 */
+.widget-quick-contact .flat-button.bg-orange:hover {
+	border-color: #e53a40 ;
+}
+
+.blog-posts .comment-post .comment-respond button:hover, .flat-contact-form .submit-wrap button:hover,flat-button-slider.bg-orange:hover,flat-button-slider:hover, {
+	border-color: #004e66;
+}
+
+/* Background Color
+-------------------------------------------------------------- */
+/* Background color #30a9de */
+.flat-top,.sidebar .widget:after,.flat-toggle:before,
+#mainnav ul.submenu > li > a:hover,
+.flat-button-slider.bg-button-slider-32bfc0:hover,
+.blog-pagination .flat-pagination li a:hover, .blog-pagination .flat-pagination .active,
+.button.black,.flat-tabs ul.menu-tab li.active a, .flat-tabs ul.menu-tab li a:hover,
+.overlay.bg-scheme1,.button-right.owl-theme .owl-controls .owl-nav div:hover,
+input[type="submit"]:hover, .testimonial-slider.owl-theme .owl-dots .owl-dot span:hover,
+button[type="submit"]:hover, .owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span,
+.button:hover,.flat-button.bg-orange,.tp-caption.flat-button-slider.bg-orange,
+.go-top,.flat-button:hover,button, input[type="button"], input[type="reset"], input[type="submit"],
+.button.bg-scheme3.style1:hover,
+.header-v4 .header-menu-v4 .nav-wrap,
+.general-sidebars .widget.widget_nav_menu ul li,
+.flat-accordion.style1 .flat-toggle .toggle-title:before,
+.flat-tabs ul.menu-tabs,
+.flat-portfolio ul.portfolio-filter li a,
+.portfolio .portfolio-wrap .portfolio-thumbnail > a,
+.blog .blog-post .entry-cover a, 
+.blog-single .blog-post .entry-cover a,
+.blog-single .blog-post .entry-footer .entry-tags a,
+.navigation.post-navigation .nav-links li:hover a:after,
+.blog-shortcode .blog-post .entry-cover a,
+.button.bg-scheme2:hover,ul.curriculum li ul.section-content li.course-lesson a.lesson-preview:hover,
+.widget.widget_price_filter .price_filter
+{
+	background-color: #f37029;
+}
+
+/* background #e53a40*/
+.widget-quick-contact .flat-button.bg-orange:hover, .featured-courses-news .review-rating .flat-money,
+ul.curriculum li ul.section-content li.course-lesson .lesson-preview,.go-top.show:hover, flat-button-slider.bg-orange:hover,flat-button-slider:hover {
+	background-color: #f37029;
+}
+
+/* background #282c37*/
+.blog-posts .comment-post .comment-respond button:hover, .flat-contact-form .submit-wrap button:hover {
+	background: #282c37;
+}
+
+/* Logo and background-images 
+-------------------------------------------------------------- */
+.flat-row.testimonial .testimonial-content:before {
+    background: url(../../images/index/testimonial-icon3.png) no-repeat;
+}
