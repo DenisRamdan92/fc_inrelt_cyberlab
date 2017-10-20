@@ -69,7 +69,7 @@ $route['blog'] = "backend/blog";
 $route['tags'] = "backend/tags";
 $route['comment'] = "backend/blog/comment";
 $route['slider'] = "backend/slider";
-$route['info'] = "backend/info";
+$route['webinfo'] = "backend/info";
 $route['socmed'] = "backend/socmed";
 $route['about'] = "backend/about";
 //Sidebar navigation end

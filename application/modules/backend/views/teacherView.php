@@ -3,6 +3,7 @@
     <div class="col-sm-12">
         <div class="panel panel-default card-view">
             <div class="panel-heading">
+				
                 <div class="clearfix"></div>
             </div>
             <div class="panel-wrapper collapse in">
@@ -40,175 +41,64 @@
 </div>
 <!-- /Row -->
 
-<div class="modal fade" id="myModalAddJabatan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button id="close_modal_ad" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel"><span id="title_pegawai">Tambah pegawai</span></h4>
-      </div>
-      <div class="modal-body">
-		<form id="frm">
-
-        <div class="row">
-		<div class="col-md-12">
-		<br>
-		Nama Siswa :
+<div class="modal fade" id="modal-default">
+<div class="modal-dialog">
+  <div class="modal-content">
+	<div class="modal-header">
+	  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		<span aria-hidden="true">&times;</span></button>
+	  <h4 class="modal-title"><span id="judul">Tambah Data</span> <small>Image slide</small></h4>
+	</div>
+	<div class="modal-body">
+  <form action="<?php echo base_url('admin/galeri/slide/save_galeri');?>" method="POST" id="uploadform">
+	  <input type="hidden" id="id_slide" name="id">
+	<input type="hidden" id="img_name" name="img_name">
+	   <input type="hidden" id="is_edit" name="is_edit">
+	   <div class="row">
+		  <div class="col-md-12">
+		  Caption
+			<!-- Custom Tabs -->
+			<div class="nav-tabs-custom">
+			  <ul class="nav nav-tabs">
+				<li class="active"><a href="#tab_1" data-toggle="tab">Indonesia</a></li>
+				<li><a href="#tab_2" data-toggle="tab">Inggris</a></li>
+			  </ul>
+			  <div class="tab-content">
+				<div class="tab-pane active" id="tab_1">
+				  <textarea size="50" name="konten_id" type="text" id="konten_id" placeholder="" class="form-control" required></textarea>
+				</div>
+				<!-- /.tab-pane -->
+				<div class="tab-pane" id="tab_2">
+				  <textarea size="50" name="konten_en" type="text" id="konten_en" placeholder="" class="form-control" required></textarea>
+				</div>
+				<!-- /.tab-pane -->
+			  </div>
+			  <!-- /.tab-content -->
+			</div>
+			<!-- nav-tabs-custom -->
+		  </div>
+		  <!-- /.col -->
+		</div>
+		   <div class="form-group">
+			  <div class="row">
+		<div class="col-sm-12">
+		  Image file: <span id="image_file"></span><br>
+		  <input type="file" name="image" class="form-control" />
 		</div>
 		</div>
-		<div class="row">
-		<div class="col-md-12">
-		<input type="text" class="form-control" id="nama">
-		<input type="hidden" class="form-control" id="id_siswa">
-		</div>
-		</div>
-
-		<div class="row">
-		<div class="col-md-12">
-		<br>
-		Username :
-		</div>
-		</div>
-		<div class="row">
-		<div class="col-md-12">
-		<input type="text" class="form-control" id="username">
-		</div>
-		</div>
-
-		<div class="row">
-		<div class="col-md-12">
-		<br>
-		Jenis kelamin :
-		</div>
-		</div>
-		<div class="row">
-		<div class="col-md-12">
-		<select class="form-control" id="jns">
-		<option value=""></option>
-		<option value="male">Laki-laki</option>
-		<option value="female">Perempuan</option>
-		</select>
-		</div>
-		</div>
-
-		<div class="row">
-		<div class="col-md-12">
-		<br>
-		Tempat lahir :
-		</div>
-		</div>
-		<div class="row">
-		<div class="col-md-12">
-		<input type="text" class="form-control" id="tmp">
-		</div>
-		</div>
-
-		<div class="row">
-		<div class="col-md-12">
-		<br>
-		Tanggal lahir :
-		</div>
-		</div>
-		<div class="row">
-		<div class="col-md-12">
-		<input type="date" class="form-control" id="tgl">
-		</div>
-		</div>
-
-		<div class="row">
-		<div class="col-md-12">
-		<br>
-		Negara :
-		</div>
-		</div>
-		<div class="row">
-		<div class="col-md-12">
-		<input type="text" class="form-control" id="negara">
-		</div>
-		</div>
-
-		<div class="row">
-		<div class="col-md-12">
-		<br>
-		Alamat :
-		</div>
-		</div>
-		<div class="row">
-		<div class="col-md-12">
-		<input type="text" class="form-control" id="al">
-		</div>
-
-		</div>
-		<div class="row">
-		<div class="col-md-12">
-        <br>
-        Pendidikan :
-		</div>
-		</div>
-		<div class="row">
-		<div class="col-md-12">
-		<input type="text" class="form-control" id="edu">
-		</div>
-		</div>
-		
-		<div class="row">
-		<div class="col-md-12">
-		<br>
-		Telepon :
-		</div>
-		</div>
-		<div class="row">
-		<div class="col-md-12">
-		<input type="text" class="form-control" id="tel">
-		</div>
-		</div>
-
-		<div class="row">
-		<div class="col-md-12">
-		<br>
-		Email :
-		</div>
-		</div>
-		<div class="row">
-		<div class="col-md-12">
-		<input type="text" class="form-control" id="em">
-		</div>
-		</div>
-
-		<div class="row">
-		<div class="col-md-12">
-		<br>
-		Tertarik Pada :
-		</div>
-		</div>
-		<div class="row">
-		<div class="col-md-12">
-		<input type="text" class="form-control" id="tertarikpada">
-		</div>
-		</div>
-
-      </div>
-      <div class="modal-footer">
-		<div class="row">
-		<div class="col-md-5" style="float:left">
-		<span id="loading" style="display:none">
-		loading ...
-		</span>
-		</div>
-		<div class="col-md-3" style="float:right">
-		<span id="print_d">
-        <button type="button" class="btn btn-primary" id="simpan">Simpan</button>
-		</span>
-		</div>
-		<div class="col-md-2" style="float:right">
-        <button id="close" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		</div>
-		</form>
-		</div>
-      </div>
-    </div>
+	  </div>
+	</div>
+	<div class="modal-footer">
+	  <button id="close" type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+	  <input id="simpan" type="submit" class="btn btn-primary" value="Simpan">
+	</div>
+  </form>
   </div>
+  <!-- /.modal-content -->
 </div>
+<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
 
 <button id="add_hidden" style="display:none" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalAddJabatan" data-backdrop="static">
 		  Click
