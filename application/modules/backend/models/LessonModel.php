@@ -90,7 +90,7 @@ class LessonModel extends CI_Model{
 	public function check($employee)
 	{
 		$this->db->where("title_lesson",$employee);
-		$get = $this->db->get($this->tablel);
+		$get = $this->db->get("tbl_lesson");
 		if($get->num_rows()>0){
 			exit(json_encode(array("error"=>1,"message"=>'Nama lesson sudah ada!')));
 		}else{

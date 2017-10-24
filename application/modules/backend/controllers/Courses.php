@@ -12,7 +12,9 @@ class Courses extends CI_Controller{
     
     public function index(){
         $this->template->load('tmp/backend','coursesView');
-    }
+	}
+	
+
     //material function
     public function material()
     {
@@ -92,6 +94,8 @@ class Courses extends CI_Controller{
 		endif;
 	}
 	//end material function
+
+	//Lesson function
 	public function lesson()
 	{
 		$this->template->load('tmp/backend','lessonView');
@@ -186,6 +190,114 @@ class Courses extends CI_Controller{
         echo json_encode($output);
 		endif;
 	}
+	//end lesson function
 
+	//courses function
+	public function ajax_list()
+	{
+		if($this->input->method(TRUE)=='POST'):
+		$list = $this->model->get_datatables();
+        $data_ = array();
+        $no = $_POST['start'];
+        foreach ($list as $files_) {
+            $no++;
+            $row = array();
+			
+			$row[] = $no;
+			$row[] = ucfirst($files_->id_courses);
+			$row[] = ucfirst($files_->title_courses);
+            $row[] = ucfirst($files_->title_lesson);
+			$row[] = ucfirst($files_->title_material);
+			$row[] = ucfirst($files_->content_courses);
+			$row[] = ucfirst($files_->price);
+
+			$row[] = "<button id_courses='".$files_->id_courses."' id_material='".$files_->id_material."' title_courses='".$files_->title_courses."' content_courses='".$files_->content_courses."' price='".$files_->price."' class='btn btn-info' id='edit_pengguna'><i class='fa fa-pencil'></i> Edit</button> <button id='delete_pengguna' id_courses=".$files_->id_courses."  class='btn btn-danger'><i class='fa fa-trash'></i> Delete</button>";
+			
+            $data_[] = $row;
+
+
+		}
+
+		$output = array(
+                        "draw" => $_POST['draw'],
+                        "recordsTotal" => $this->model->count_all(),
+                        "recordsFiltered" => $this->model->count_filtered(),
+                        "data" => $data_,
+                );
+        //output to json format
+        echo json_encode($output);
+		endif;
+	}
+
+	public function insert()
+	{
+		if($this->input->method(TRUE)=='POST'):
+
+			$title_courses = $this->input->post("title_courses");
+			$id_lesson = $this->input->post("id_lesson");
+			$id_material = $this->input->post("id_material");
+			$content_courses = $this->input->post("content_courses");
+			$price = $this->input->post("price");
+
+			$this->model->check($title_courses);
+
+
+			$this->db->insert("tbl_courses",array(
+				"title_courses"=>$title_courses,
+				"id_lesson"=>$id_lesson,
+				"id_material"=>$id_material,
+				"content_courses"=>$content_courses,
+				"price"=>$price
+				));
+		endif;
+		echo json_encode(array("error"=>0));
+	}
+
+	public function update()
+	{
+		if($this->input->method(TRUE)=='POST'):
+
+			$title_courses = $this->input->post("title_courses");
+			$id_lesson = $this->input->post("id_lesson");
+			$id_material = $this->input->post("id_material");
+			$content_courses = $this->input->post("content_courses");
+			$price = $this->input->post("price");
+			$id = $this->input->post("id_courses");
+			
+			$this->model->check_another($title_courses,$id);
+
+
+			$this->db->where(array("id_courses"=>$id));
+			$this->db->update("tbl_courses",array(
+				"id_material"=>$id_material,
+				"id_lesson"=>$id_lesson,
+				"title_courses"=>$title_courses,
+				"content_courses"=>$content_courses,
+				"price"=>$price
+				));
+		endif;
+		echo json_encode(array("error"=>0));
+	}
+
+	public function delete()
+	{
+		if($this->input->method(TRUE)=='POST'):
+			$id = $this->input->post("id_courses");
+			$this->db->where(array("id_courses"=>$id));
+			$this->db->delete("tbl_courses");
+		endif;
+		echo json_encode(array("error"=>0));
+	}
+
+	public function lesson_list()
+	{
+		$this->model->lesson_list($this->input->get('term'));
+
+	}
+	public function material_list()
+	{
+		$this->model->material_list($this->input->get('term'));
+
+	}
 }
 ?>

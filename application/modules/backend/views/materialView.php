@@ -65,7 +65,7 @@
 		</div>
 		<div class="row">
 		<div class="col-md-12">
-		<input type="text" class="form-control" id="content">
+		<textarea name="content" id="content" cols="30" rows="10"></textarea>
 		</div>
 		</div>
 		
@@ -95,11 +95,11 @@
 <button id="add_hidden" style="display:none" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalAddJabatan" data-backdrop="static">
 		  Click
 </button>
-			
+<script src="<?php echo base_url()?>assets/backend/vendors/ckeditor/ckeditor.js"></script>		
 <script>
 	$(document).ready(function(){
 		
-
+		CKEDITOR.replace('content');
 		var employee = $('#table_pegawai').DataTable({ 
 		scrollX: true,
         "processing": true, //Feature control the processing indicator.
@@ -124,6 +124,7 @@
 
 	$("#add_pegawai").click(function(){
 		$("#title_pegawai").text('Tambah Materi');
+		CKEDITOR.instances['content'].setData();
 		$("#loading").hide();
 		$("#frm").trigger('reset');
 		$("#add_hidden").click();
@@ -136,11 +137,6 @@
 			return false;
 		}
 
-		if($.trim($("#content").val()).length<1){
-			alert('Konten harus diisi!');
-			return false;
-		}
-
 		var judul = $.trim($("#title_pegawai").text());
 		if(judul=='Tambah Materi'){
 		$.ajax({
@@ -148,7 +144,7 @@
 			error: function(){
 				alert('Error!');
 			},
-			data:"title_material="+$("#title_material").val()+"&content_material="+$("#content").val(),
+			data:"title_material="+$("#title_material").val()+"&content_material="+CKEDITOR.instances['content'].getData(),
 			url:"<?php echo base_url();?>backend/courses/insertMaterial",
 			dataType:"json",
 			beforeSend: function(){
@@ -178,7 +174,7 @@
 			beforeSend: function(){
 				$("#loading").show();
 			},
-			data:"id_material="+$.trim($("#id_material").val())+"&title_material="+$("#title_material").val()+"&content_material="+$("#content").val(),
+			data:"id_material="+$.trim($("#id_material").val())+"&title_material="+$("#title_material").val()+"&content_material="+CKEDITOR.instances['content'].getData(),
 			url:"<?php echo base_url();?>backend/courses/updateMaterial",
 			success: function(){
 				$("#loading").hide();
@@ -193,7 +189,7 @@
 	
 	$(document).on("click","#delete_btn",function(){
 		var id = $.trim($(this).attr("id_material"));
-		var c = confirm("Yakin hapus file ini?");
+		var c = confirm("penghapusan data akan berpengaruh kepada data lain. Yakin hapus file ini?");
 
 		if(c){
 
@@ -229,7 +225,7 @@
 
 		$("#title_pegawai").text('Edit Materi');
 		$("#id_material").val(id);
-		$("#content").val(content);
+		CKEDITOR.instances['content'].setData(content);
 		$("#title_material").val(title);
 		$("#add_hidden").click();
 	});
