@@ -32,10 +32,10 @@ class Tags extends CI_Controller{
 			$id = $this->input->post("id_tag");
 			$title_tag = $this->input->post("title_tag");
 
-			$this->db->where(array("id_tag"=>$id));
 
 			$this->model->check($title_tag);
-
+			
+			$this->db->where("id_tag",$id);			
 			$this->db->update("tbl_tag",array(
 				"title_tag"=>$title_tag
 				));
@@ -58,6 +58,7 @@ class Tags extends CI_Controller{
 				));
 			}
 		endif;
+		echo 1;
 	}
 
 	public function ajax_list()
@@ -69,18 +70,9 @@ class Tags extends CI_Controller{
         foreach ($list as $data) {
             $no++;
             $row = array();
-            // if ($data->status == 1) {
-            //     $statusstr = "Aktif";
-            // } else {
-            //     $statusstr = "Tidak Aktif";
-            // }
 			$m = preg_match_all("!\D+!",$data->id_tag,$match);
 			$row[] = "<button id='edit_btn' id_tag='".$data->id_tag."' title_tag='".$data->title_tag."' class='btn btn-info'><i class='fa fa-pencil'></i> Edit</button> <button id='delete_btn' id_tag='".$data->id_tag."' class='btn btn-danger'><i class='fa fa-trash'></i> Delete</button>";
-            $row[] = strtoupper($data->title_tag);
-            // $row[] = $statusstr;
-			/*
-			$row[] = ucfirst($data->status);
-			*/
+			$row[] = strtoupper($data->title_tag);	
             $data_[] = $row;
 		}
 

@@ -54,13 +54,32 @@
             </div>
             <div id="menu3" class="tab-pane fade">
             <h3>Data</h3>
+            
             <?php foreach ($dataGaleri as $dg) { ?>
-                    <div class="col-md-3 col-bg-4">
-                        <p><?php echo strtoupper($dg['nama_image'])?>
+                <div class="col-lg-4 col-md-12 col-sm-6 col-xs-12">
+                    <div class="panel panel-default card-view">
+                        <div class="panel-heading">
+                            <div class="pull-left">
+                                <h6 class="panel-title txt-dark"><?php echo strtoupper($dg['nama_image'])?></h6>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="panel-wrapper collapse in">
+                            <div class="panel-body">
+                                <div class="sm-graph-box">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                        <img src="<?php echo $dg['url_image']?>" width="100%" style="border:1px solid">   
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn-group">
                         <?php echo anchor('backend/gallery/hapus/'.$dg['id_gallery'],"<i class='btn btn-danger btn-xs' id='hapus' name='hapus' title='Hapus'><span class='fa fa-trash'></span> Hapus</i>")?>
-                    </p>
-                        <img src="<?php echo $dg['url_image']?>" width="200px" style="border:1px solid">
+                        </div>
                     </div>
+                </div>
             <?php } ?>
                 
            </div>

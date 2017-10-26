@@ -11,11 +11,11 @@
             <div class="panel-wrapper collapse in">
                 <div class="panel-body">
                     <div class="table-wrap">
-                        <table id="table_pegawai" class="table-hover">
+                        <table id="table_pegawai" class="table table-hover table-bordered">
                             <thead>
                                 <tr>
-                                    <th width="230px"></th>
-                                    <th width="50px"></th>
+                                    <th width="100%">Aksi</th>
+                                    <th width="100%">Nama</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -150,7 +150,7 @@
 		}else if(judul=='Edit Tag'){
 
 			var id = $.trim($("#id_tag").val());
-			var nj = $.trim($("#nj").val());
+			var title = $.trim($("#title_tag").val());
 			$.ajax({
 			type:"POST",
 			error: function(){
@@ -159,7 +159,7 @@
 			beforeSend: function(){
 				$("#loading").show();
 			},
-			data:"title_tag="+$("#title_ta").val()+"&id_tag="+$.trim($("#id_tag").val()),
+			data:"title_tag="+title+"&id_tag="+id,
 			url:"<?php echo base_url();?>backend/tags/update",
 			success: function(){
 				$("#loading").hide();
@@ -173,8 +173,7 @@
 	});
 	
 	$(document).on("click","#delete_btn",function(){
-		var id = $.trim($(this).attr("id_employee"));
-		var nj = $.trim($(this).attr("nama_pegawai"));
+		var id = $.trim($(this).attr("id_tag"));
 		var c = confirm("Yakin hapus file ini?");
 
 		if(c){
@@ -187,8 +186,8 @@
 			beforeSend: function(){
 				$("#loading").show();
 			},
-			data:"id_employee="+id+"&nama_pegawai="+nj,
-			url:"<?php echo base_url();?>backend/employee/delete",
+			data:"id_tag="+id,
+			url:"<?php echo base_url();?>backend/tags/delete",
 			success: function(){
 				$("#loading").show();
 				employee.ajax.reload();
@@ -201,40 +200,12 @@
 	});
 
 	$(document).on("click","#edit_btn",function(){
-		var ie = $.trim($(this).attr("id_employee"));
-		var nip = $.trim($(this).attr("nip"));
-		var ktp = $.trim($(this).attr("no_ktp"));
-		var nama = $.trim($(this).attr("nama"));
-		var tmp = $.trim($(this).attr("tmp"));
-		var nj = $.trim($(this).attr("nama_employee"));
-		var tel = $.trim($(this).attr("telepon"));
-		var al = $.trim($(this).attr("alamat"));
-		var em = $.trim($(this).attr("email"));
-		var stat = $.trim($(this).attr("status"));
-		var tl = $.trim($(this).attr("tgl"));
-		var ag = $.trim($(this).attr("agama"));
-		var jns = $.trim($(this).attr("jns"));
-        var edu = $.trim($(this).attr("edu"));
-		var idunit = $.trim($(this).attr("id_unit"));
-		
-		/*
-		data:"id_employee="+id+"&nama="+$.trim($("#nama").val())+"&idjab="+$.trim($("#idjab").val())+"&iddept="+$.trim($("#iddept").val())+"&nip="+$.trim($("#nip").val())+"&nokktp="+$.trim($("#nokktp").val())+"&tmp="+$.trim($("#tmp").val())+"&tgl="+$.trim($("#tgl").val())+"&al="+$.trim($("#al").val())+"&tel="+$.trim($("#tel").val())+"&em="+$.trim($("#em").val())+"&stat="+$.trim($("#stat").val()),
-		*/
+		var id = $.trim($(this).attr("id_tag"));
+		var title = $.trim($(this).attr("title_tag"));
 
-		$("#title_pegawai").text('Edit pegawai');
-		$("#id_employee").val(ie);
-		$("#nama").val(nama);
-		$("#agama").val(ag);
-		$("#nip").val(nip);
-		$("#nokktp").val(ktp);
-		$("#tmp").val(tmp);
-		$("#tgl").val(tl);
-		$("#al").val(al);
-		$("#tel").val(tel);
-		$("#em").val(em);
-		$("#jns").val(jns).change();
-		$("#stat").val(stat);
-        $("#edu").val(edu);
+		$("#title_pegawai").text('Edit Tag');
+		$("#id_tag").val(id);
+		$("#title_tag").val(title);
 		$("#add_hidden").click();
 	});
 
