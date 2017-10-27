@@ -293,20 +293,14 @@
 						</li>
 					<?php } ?>
 
-					<?php if (check_menu('blog') || check_menu('tags') || check_menu('commnet')) {?>
+					<?php if (check_menu('blog') || check_menu('commnet')) {?>
 						<li>
-							<a <?php echo active_url("blog");?> <?php echo active_url("tags");?> <?php echo active_url("comment");?> href="javascript:void(0);" data-toggle="collapse" data-target="#app_blog"><i class="icon-note mr-10"></i>Blog <span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
+							<a <?php echo active_url("blog");?> <?php echo active_url("comment");?> href="javascript:void(0);" data-toggle="collapse" data-target="#app_blog"><i class="icon-note mr-10"></i>Blog <span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
 							<ul id="app_blog" class="collapse collapse-level-1">
 								
 								<?php if (check_menu('blog')) {?>
 									<li>
 										<a <?php echo active_url("blog");?> href="<?php echo base_url(); ?>blog">Blog</a>
-									</li>
-								<?php } ?>
-
-								<?php if (check_menu('tags')) {?>
-									<li>
-										<a <?php echo active_url("tags");?> href="<?php echo base_url(); ?>tags">Tags</a>
 									</li>
 								<?php } ?>
 

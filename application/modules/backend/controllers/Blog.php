@@ -7,13 +7,19 @@ class Blog extends CI_Controller{
 
     function __construct() {
         parent::__construct();
+        if($this->session->userdata('isLogin')!= true)
+        {
+            redirect('admin');
+        }
 		$this->load->model('BlogModel','model');
 		$this->load->model('BlogMainModel','modelMain');
 		$this->load->model('CommentModel');
     }
     
     public function index(){
-        $this->template->load('tmp/backend','blogView');
+		$data['datablog'] = $this->modelMain->datablog();
+        $data['datatag'] = $this->modelMain->datatag();
+        $this->template->load('tmp/backend','blogView',$data);
     }
     public function tag()
     {
@@ -25,87 +31,74 @@ class Blog extends CI_Controller{
 	}
 
 	//Blog function
-	public function delete()
-	{
-		if($this->input->method(TRUE)=='POST'):
-			$id = $this->input->post("id_blog");
-			$this->db->where(array("id_blog"=>$id));
-			$this->db->delete("tbl_blog");
-		endif;
-		echo json_encode(array("error"=>0));
-	}
-	public function update()
-	{
-		if($this->input->method(TRUE)=='POST'):
+	public function blogTambah()
+    {
+        $this->model->blogTambah();
+    }
+    public function edit($id)
+    {
+        $this->model->edit($id);
+    }
+    public function hapus($id)
+    {
+        $this->modelMain->hapus($id);
+    }
+    public function simpan($id="")
+    {
+        $config['upload_path']          = './assets/backend/img/blog/';
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['max_size']             = 80000;
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
 
-			$title_blog = $this->input->post("title_blog");
-			$id_tag = $this->input->post("id_tag");
-			$title_blog = $this->input->post("title_blog");
-			$content_blog = $this->input->post("content_blog");
-			$id_blog = $this->input->post("id_blog");
+        if ( ! $this->upload->do_upload('urlSlider'))
+        {
+             $urlSlider = "";
+             $error = $this->upload->display_errors();
+             echo $error;
+        }
+        else
+        {
+            $upload_data = $this->upload->data(); //Returns array of containing all of the data related to the file you uploaded.
+            $file_name = $upload_data['file_name'];
+            $urlSlider = base_url()."assets/backend/img/blog/".$file_name;
+        }
+        $title_blog = $this->input->post("title_blog");
+        $content_blog = $this->input->post("content_blog");
+        $id_tag = $this->input->post("id_tag");
+        $date_blog = mdate('%Y-%m-%d');
+        $data = array(
+            'img_url' => $urlSlider,
+            'title_blog' => $title_blog,
+            'content_blog' => $content_blog,
+            'date_blog' => $date_blog,
+            'id_tag' =>$id_tag,
+            'id_user' => $this->session->userdata('username')
+		);
+		if ($id == "") {
 			
-			$this->modelMain->check_another($title_blog,$id);
-
-
-			$this->db->where(array("id_blog"=>$id));
-			$this->db->update("tbl_blog",array(
-				"title_blog"=>$title_blog,
-				"content_blog"=>$content_blog,
-				"id_tag"=>$id_tag
-				));
-		endif;
-		echo json_encode(array("error"=>0));
-	}
-	public function insert()
-	{
-		if($this->input->method(TRUE)=='POST'):
-
-			$id_tag = $this->input->post("id_tag");
-			$title_blog = $this->input->post("title_blog");
-			$content_blog = $this->input->post("content_blog");
-			$date_blog = $this->input->post("date_blog");
-
-			$this->model->check($title_blog);
-
-
-			$this->db->insert("tbl_blog",array(
-				"title_blog"=>$title_blog,
-				"id_tag"=>$id_tag,
-				"content_blog"=>$content_blog,
-				"date_blog"=>$date_blog
-				));
-		endif;
-		echo json_encode(array("error"=>0));
-	}
-	public function ajax_list()
-	{
-		if($this->input->method(TRUE)=='POST'):
-		$list = $this->modelMain->get_datatables();
-        $data_ = array();
-        $no = $_POST['start'];
-        foreach ($list as $files_) {
-            $no++;
-            $row = array();
+			$this->db->insert('tbl_blog',$data);
 			
-			$row[] = $no;
-			$row[] = ucfirst($files_->id_tag);
-			$row[] = ucfirst($files_->title_blog);
-            $row[] = ucfirst($files_->content_blog);
-			$row[] = ucfirst($files_->date_blog);
-			$row[] = "<button id_blog='".$files_->id_blog."' id_tag='".$files_->id_tag."' title_blog='".$files_->title_blog."' content_blog='".$files_->content_blog."' date_blog='".$files_->date_blog."' class='btn btn-info' id='edit_pengguna'><i class='fa fa-pencil'></i> Edit</button> <button id='delete_pengguna' id_blog=".$files_->id_blog."  class='btn btn-danger'><i class='fa fa-trash'></i> Delete</button>";
-			
-            $data_[] = $row;
-
-
+		} else {
+			$this->db->where('id_blog',$id);
+			$this->db->update('tbl_blog',$data);
 		}
-		endif;
-	}
+        $this->session->set_flashdata('msg_error',"<p style='color:green;'>Data berhasil di simpan</p>");
+        redirect('backend/blog');
+    }
+    public function blogEdit()
+    {
+        $this->model->blogEditKategori();
+    }
+    public function hapusKeterangan($id)
+    {
+        $this->model->hapusKeterangan($id);
+    }
 
     //tags function
-    public function deleteTag()
+    public function deleteTag($id)
 	{
 		if($this->input->method(TRUE)=='POST'):
-			$id = $this->input->post("id_tag");
 			$this->db->where(array("id_tag"=>$id));
 			$this->db->delete("tbl_tag");
 		endif;
@@ -125,16 +118,9 @@ class Blog extends CI_Controller{
 		endif;
 	}
 
-	public function insertTag()
+	public function insertTag($id="")
 	{
-		if($this->input->method(TRUE)=='POST'):
-			
-			$titleTag = $this->input->post("titleTag");
-
-			$this->db->insert($this->table,array(
-				"title_tag"=>$titleTag
-				));
-		endif;
+		$this->modelMain->insertTag($id);
 	}
 
 	public function ajax_listTag()

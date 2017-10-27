@@ -539,17 +539,6 @@ input[type=checkbox]:not(:disabled).tabbed:focus ~ .lever::before {
 										<div class="panel">
 											<div class="panel-heading">
 												<div class="pull-left">
-													<h6 class="panel-title txt-dark">Tags</h6>
-												</div>
-												<div class="pull-right switch">
-						                             <label style="color:#4ab879;">OFF<input type="checkbox" name="role[]" id="tags" value="tags"><span class="lever switch-col-green"></span>ON<label>
-												</div>
-											</div>
-										</div>
-
-										<div class="panel">
-											<div class="panel-heading">
-												<div class="pull-left">
 													<h6 class="panel-title txt-dark">Comment</h6>
 												</div>
 												<div class="pull-right switch">

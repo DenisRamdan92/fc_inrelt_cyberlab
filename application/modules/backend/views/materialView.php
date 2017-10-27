@@ -14,7 +14,7 @@
 							<div class="panel-wrapper collapse in">
 								<div class="panel-body">
 									<div class="table-wrap">
-										<table id="table_pegawai" class="table-hover table-bordered">
+										<table id="table_pegawai" class="table table-hover table-bordered">
 											<thead>
 												<tr>
 													<th width="20%">Action</th>

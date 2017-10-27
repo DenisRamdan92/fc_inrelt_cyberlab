@@ -52,6 +52,7 @@ class Login extends CI_Controller {
                 $this->session->set_userdata('id_group', $session_user->id_group);
                 $this->session->set_userdata('id_unit', $session_user->id_unit);
                 $this->session->set_userdata('nama_unit', $session_user->nama_unit);
+                $this->session->set_userdata('isLogin', true);
                 redirect('backend/main');
             } else {
                 $error = 'Pengguna atau Kata sandi salah.';

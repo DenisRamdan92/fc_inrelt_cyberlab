@@ -1,6 +1,6 @@
-<link href="<?php echo base_url();?>assets/backend/vendors/bower_components/select2/dist/css/select2.min.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo base_url();?>assets/backend/vendors/bower_components/select2/dist/css/select2.css" rel="stylesheet" type="text/css"/>
 <script src="<?php echo base_url(); ?>assets/backend/vendors/bower_components/jquery/dist/jquery.min.js"></script>
-<script src="<?php echo base_url();?>assets/backend/vendors/bower_components/select2/dist/js/select2.full.min.js"></script>
+<script src="<?php echo base_url();?>assets/backend/vendors/bower_components/select2/dist/js/select2.full.js"></script>
 
 <!-- Row -->
 <div class="row">
@@ -15,7 +15,7 @@
             <div class="panel-wrapper collapse in">
                 <div class="panel-body">
                     <div class="table-wrap">
-                        <table id="table_user" class="table-hover table-bordered">
+                        <table id="table_user" class="table table-hover table-bordered">
                             <thead>
                                 <tr>
                                     <th width="20px">No</th>

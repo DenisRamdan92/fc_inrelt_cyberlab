@@ -3,7 +3,11 @@
 
 class Courses extends CI_Controller{
     function __construct() {
-        parent::__construct();
+		parent::__construct();
+		if($this->session->userdata('isLogin')!= true)
+        {
+            redirect('admin');
+        }
         $this->load->model('CoursesModel','model');
 		$this->load->model('MaterialModel','modelMaterial');
         $this->load->model('LessonModel','modelLesson');
