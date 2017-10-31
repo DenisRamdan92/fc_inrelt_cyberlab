@@ -3,8 +3,8 @@
   <div class="container-fluid">
     <div class="row bg-white has-shadow">
         <ul class="nav nav-tabs">
-            <li class="active"><a data-toggle="tab" href="#menu2">Form Input</a></li>
-            <li><a data-toggle="tab" href="#menu3">Data</a></li>
+            <li class="active" id='tabform'><a data-toggle="tab" href="#menu2">Form Input</a></li>
+            <li id='tabform2'><a data-toggle="tab" href="#menu3">Data</a></li>
         </ul>
                 <?php if ($this->session->flashdata('msg_error')) { ?>
                     <div class="alert margin-bottom-30">
@@ -130,6 +130,10 @@
         var title = $(this).attr('titleOffer');
         var content = $(this).attr('content');
         $('#title').val(title);
+        $('#tabform').attr('class','active');
+        $('#tabform2').attr('class','');
+        $('#menu2').attr('class','tab-pane fade in active');
+        $('#menu3').attr('class','tab-pane fade in');
         CKEDITOR.instances['content'].setData(content);
         $('#simpanform').attr('action','<?php echo base_url()?>backend/offer/simpan/'+id);
         });

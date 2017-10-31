@@ -37,9 +37,23 @@
 <hr>
 <div class="row">
 <?php foreach ($dataSlider as $ds) { ?>
-    <h3><?php echo $ds['title']?></h3>
-    <img src="<?php echo $ds['url_slider']?>" width="100%" height="300px;" style="border:1px solid;">
-    <p  style="background:#e6e6e6"><?php echo $ds['content']?></p>
-    <hr>
+
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="panel panel-default card-view">
+        <div class="panel-heading">
+          <div class="pull-left">
+            <h6 class="panel-title txt-dark"><?php echo $ds['title']?></h6>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        <div class="panel-wrapper collapse in">
+          <div class="panel-body">
+            <img src="<?php echo $ds['url_slider']?>" width="100%" height="300px;" style="border:1px solid;">
+            <p  style="background:#e6e6e6;padding:20px;"><?php echo $ds['content']?></p>
+          </div>	
+        </div>
+      </div>
+    </div>
+
 <?php }?>
 </div>

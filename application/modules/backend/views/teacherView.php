@@ -3,8 +3,8 @@
 <div class="container-fluid">
   <div class="row bg-white has-shadow">
 	  <ul class="nav nav-tabs">
-		  <li class="active"><a data-toggle="tab" href="#menu2">Form Input</a></li>
-		  <li><a data-toggle="tab" href="#menu3">Data</a></li>
+		  <li class="active" id="tabform"><a data-toggle="tab" href="#menu2">Form Input</a></li>
+		  <li id="tabform2"><a data-toggle="tab" href="#menu3">Data</a></li>
 	  </ul>
 			  <?php if ($this->session->flashdata('msg_error')) { ?>
 				  <div class="alert margin-bottom-30">
@@ -49,35 +49,47 @@
 		  </div>
 		  <div id="menu3" class="tab-pane fade">
 		  <h3>Data</h3>
-		  <table id="dataemployee" class="table table-hover">
-				  <thead>
-				  <tr>
-				  <th>No.</th>
-				  <th>Aksi</th>
-				  <th>Id</th>
-				  <th>Nama</th>
-				  <th>Deskripsi</th>
-				  <th>foto</th>
-				  </tr>
-				  </thead>
-				  <tbody>
-				  <?php 
-				  $i = 1;
-				  foreach ($datateacher as $de)
-				  {
-				  echo "<tr>";
-				  echo "<td style='background-color:rgba(136, 135, 135, 0.32);'>".$i."</td>";
-				  echo "<td><i id_teacher=".$de['id_teacher']." id='edit".$de['id_teacher']."' name='edit".$de['id_teacher']."' class='btn btn-warning btn-sm fa fa-edit editModal' title='Edit' data-toggle='modal' data-target='#modaledit'></i></td>";
-				  echo "<td>".$de['id_teacher']."</td>";
-				  echo "<td>".$de['name']."</td>";
-				  echo "<td>".$de['description']."</td>";
-				  echo "<td>"."<img src='".$de['url_foto']."' width='100px' style='border:1px solid'>"."</td>";
-				  echo "</tr>";
-				  $i++;
-				  }
-				  ?>     
-				  </tbody>
-				  </table>
+
+		  <div class="row">
+				<div class="col-sm-12">
+					<div class="panel panel-default card-view">
+						<div class="panel-wrapper collapse in">
+							<div class="panel-body">
+							<table id="dataemployee" class="table table-hover">
+							<thead>
+							<tr>
+							<th>No.</th>
+							<th>Aksi</th>
+							<th>Id</th>
+							<th>Nama</th>
+							<th>Deskripsi</th>
+							<th>foto</th>
+							</tr>
+							</thead>
+							<tbody>
+							<?php 
+							$i = 1;
+							foreach ($datateacher as $de)
+							{
+							echo "<tr>";
+							echo "<td style='background-color:rgba(136, 135, 135, 0.32);'>".$i."</td>";
+							echo "<td><i id_teacher=".$de['id_teacher']." id='edit".$de['id_teacher']."' name='edit".$de['id_teacher']."' class='btn btn-warning btn-sm fa fa-edit editModal' title='Edit' data-toggle='modal' data-target='#modaledit'></i></td>";
+							echo "<td>".$de['id_teacher']."</td>";
+							echo "<td>".$de['name']."</td>";
+							echo "<td>".$de['description']."</td>";
+							echo "<td>"."<img src='".$de['url_foto']."' width='100px' style='border:1px solid'>"."</td>";
+							echo "</tr>";
+							$i++;
+							}
+							?>     
+							</tbody>
+							</table>
+							</div>	
+						</div>	
+					</div>	
+				</div>	
+			</div>
+			<!-- /Row -->
 			  
 		 </div>
 	  </div>

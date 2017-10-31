@@ -90,51 +90,62 @@
 					<div id="menu4" class="tab-pane fade">
 					<h3>Tag</h3>						
 					<div class="row">
-								<div class="col-md-6">
-									<?php echo form_open('backend/blog/insertTag', "method='post', class='form form-horizontal', id='formKategori'")?>
-									<div class="form-group">
-									<label class="control-label col-sm-2" for="tag">Tag</label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="title_tag" name="title_tag" placeholder="insert kategori" required>
-										<input type="hidden" class="form-control" id="id_tag" name="id_tag">
-									</div>
-									</div>
-									<div class="form-group">        
-									<div class="col-sm-offset-2 col-sm-10">
-										<button type="submit" class="btn btn-default" id="simpanj" name="simpanj" >Simpan</button>
-									</div>
-									</div>
-									</form>
-								</div>
-								<div class="col-md-6">
-								<table id="dataKategori" class="table table-hover">
-								<thead>
-								<tr>
-								<th>No.</th>
-								<th style='display:none'>id tag</th>
-								<th>Tag</th>
-								<th>Aksi</th>
-								</tr>
-								</thead>
-								<tbody>
-								<?php 
-								$i = 1;
-								foreach ($datatag as $dk)
-								{
-								echo "<tr>";
-								echo "<td style='background-color:rgba(136, 135, 135, 0.32);'>".$i."</td>";
-								echo "<td id_jabatan='".$dk['id_tag']."' style='display:none'>".$dk['id_tag']."</td>";
-								echo "<td>".$dk['title_tag']."</td>";
-								echo "<td><i id='editj' name='editj' idtag='".$dk['id_tag']."' class='btn btn-warning btn-sm fa fa-edit editj'></i>";
-								echo anchor('backend/blog/deleteTag/'.$dk['id_tag'],"<i class='btn btn-danger btn-xs' id='hapusk' name='hapusk' title='Hapus Kategori'><span class='fa fa-trash'></span> Hapus</i></td>");
-								echo "</tr>";
-								$i++;
-								}
-								?>     
-								</tbody>
-								</table>
-								</div>
-					</div>
+							<div class="col-sm-12">
+								<div class="panel panel-default card-view">
+									<div class="panel-wrapper collapse in">
+										<div class="panel-body">
+										<div class="row">
+														<div class="col-md-6">
+															<?php echo form_open('backend/blog/insertTag', "method='post', class='form form-horizontal', id='formKategori'")?>
+															<div class="form-group">
+															<label class="control-label col-sm-2" for="tag">Tag</label>
+															<div class="col-sm-10">
+																<input type="text" class="form-control" id="title_tag" name="title_tag" placeholder="insert kategori" required>
+																<input type="hidden" class="form-control" id="id_tag" name="id_tag">
+															</div>
+															</div>
+															<div class="form-group">        
+															<div class="col-sm-offset-2 col-sm-10">
+																<button type="submit" class="btn btn-default" id="simpanj" name="simpanj" >Simpan</button>
+															</div>
+															</div>
+															</form>
+														</div>
+														<div class="col-md-6">
+														<table id="dataKategori" class="table table-hover">
+														<thead>
+														<tr>
+														<th>No.</th>
+														<th style='display:none'>id tag</th>
+														<th>Tag</th>
+														<th>Aksi</th>
+														</tr>
+														</thead>
+														<tbody>
+														<?php 
+														$i = 1;
+														foreach ($datatag as $dk)
+														{
+														echo "<tr>";
+														echo "<td style='background-color:rgba(136, 135, 135, 0.32);'>".$i."</td>";
+														echo "<td id_jabatan='".$dk['id_tag']."' style='display:none'>".$dk['id_tag']."</td>";
+														echo "<td>".$dk['title_tag']."</td>";
+														echo "<td><i id='editj' name='editj' idtag='".$dk['id_tag']."' class='btn btn-warning btn-sm fa fa-edit editj'></i>";
+														echo anchor('backend/blog/deleteTag/'.$dk['id_tag'],"<i class='btn btn-danger btn-xs' id='hapusk' name='hapusk' title='Hapus Kategori'><span class='fa fa-trash'></span> Hapus</i></td>");
+														echo "</tr>";
+														$i++;
+														}
+														?>     
+														</tbody>
+														</table>
+														</div>
+											</div>
+										</div>	
+									</div>	
+								</div>	
+							</div>	
+						</div>
+						<!-- /Row -->
 				</div>
 			</div>
 			</div>

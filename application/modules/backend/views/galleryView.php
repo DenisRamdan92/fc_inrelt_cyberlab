@@ -85,7 +85,14 @@
            </div>
            <div id="menu4" class="tab-pane fade">
             <h3>Kategori</h3>
-            <div class="row">
+
+                <!-- Row -->
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default card-view">
+            <div class="panel-wrapper collapse in">
+                <div class="panel-body">
+                    <div class="table-wrap">
                     <div class="col-md-6">
                         <?php echo form_open('backend/gallery/kategori', "method='post', class='form form-horizontal', id='formKategori'")?>
                         <div class="form-group">
@@ -130,8 +137,13 @@
                     </tbody>
                     </table>
                     </div>
-                </div>
-                
+                    </div>	
+                </div>	
+            </div>	
+        </div>	
+    </div>	
+</div>
+<!-- /Row -->
            </div>
         </div>
     </div>

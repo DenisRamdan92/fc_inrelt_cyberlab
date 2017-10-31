@@ -2,41 +2,24 @@
             <div class="tp-banner-container">
                 <div class="tp-banner" >
                     <ul>
+                    <?php
+                        $this->db->order_by("id_slider","ASC");
+                        $quer = $this->db->get("tbl_slider");
+                        $result = $quer->result();
+                        foreach($result as $res11):
+                    ?>
                         <li data-transition="random-static" data-slotamount="7" data-masterspeed="1000" data-saveperformance="on">
-                            <img src="<?php echo base_url(); ?>assets/frontend/images/slides/1.jpg" alt="slider-image" />
+                            <img src="<?php echo $res11->url_slider;?>" alt="slider-image" />
                             <div class="tp-caption sfl title-slide center" data-x="130" data-y="210" data-speed="1000" data-start="1000" data-easing="Power3.easeInOut">      	                      
-                               A PLACE TO HACK YOUR BRAIN, <br> <br>TO GET YOUR WORLD
+                                <?php echo $res11->title;?>
                             </div>  
                             <div class="tp-caption sfr desc-slide center" data-x="108" data-y="280" data-speed="1000" data-start="1500" data-easing="Power3.easeInOut">                       
-                                <br> CYBERLAB is an IT education company established in Bandung - Indonesia. Our concern is to give IT training in<br>form of regular training, private course, workshop and in-house training for personal and <br>company who wants to expand their IT skills, and knowledge
+                                <br> <?php echo wordwrap($res11->content,100,"<br>")?>
                             </div>    
                             <div class="tp-caption sfl flat-button-slider bg-orange" data-x="420" data-y="439" data-speed="1000" data-start="2000" data-easing="Power3.easeInOut"><a class="" href="#">SIGN UP TRAINING</a></div>
                              <div class="tp-caption sfr flat-button-slider" data-x="601" data-y="440" data-speed="1000" data-start="2500" data-easing="Power3.easeInOut"><a class="" href="#">TRAINING PROGRAM</a></div>                    
                         </li>
-                        
-                        <li data-transition="random-static" data-slotamount="7" data-masterspeed="1000" data-saveperformance="on">
-                            <img src="<?php echo base_url(); ?>assets/frontend/images/slides/2.jpg" alt="slider-image" />
-                            <div class="tp-caption sfl title-slide center" data-x="130" data-y="210" data-speed="1000" data-start="1000" data-easing="Power3.easeInOut">      	                      
-                               A PLACE TO HACK YOUR BRAIN, <br> <br>TO GET YOUR WORLD
-                            </div>  
-                            <div class="tp-caption sfr desc-slide center" data-x="108" data-y="280" data-speed="1000" data-start="1500" data-easing="Power3.easeInOut">                       
-                                <br> CYBERLAB is an IT education company established in Bandung - Indonesia. Our concern is to give IT training in<br>form of regular training, private course, workshop and in-house training for personal and <br>company who wants to expand their IT skills, and knowledge
-                            </div>    
-                            <div class="tp-caption sfl flat-button-slider bg-orange" data-x="420" data-y="439" data-speed="1000" data-start="2000" data-easing="Power3.easeInOut"><a class="" href="#">SIGN UP TRAINING</a></div>
-                             <div class="tp-caption sfr flat-button-slider" data-x="601" data-y="440" data-speed="1000" data-start="2500" data-easing="Power3.easeInOut"><a class="" href="#">TRAINING PROGRAM</a></div>                    
-                        </li>
-
-                        <li data-transition="random-static" data-slotamount="7" data-masterspeed="1000" data-saveperformance="on">
-                            <img src="<?php echo base_url(); ?>assets/frontend/images/slides/3.jpg" alt="slider-image" />
-                            <div class="tp-caption sfl title-slide center" data-x="130" data-y="210" data-speed="1000" data-start="1000" data-easing="Power3.easeInOut">      	                      
-                               A PLACE TO HACK YOUR BRAIN, <br> <br>TO GET YOUR WORLD
-                            </div>  
-                            <div class="tp-caption sfr desc-slide center" data-x="108" data-y="280" data-speed="1000" data-start="1500" data-easing="Power3.easeInOut">                       
-                                <br> CYBERLAB is an IT education company established in Bandung - Indonesia. Our concern is to give IT training in<br>form of regular training, private course, workshop and in-house training for personal and <br>company who wants to expand their IT skills, and knowledge
-                            </div>    
-                            <div class="tp-caption sfl flat-button-slider bg-orange" data-x="420" data-y="439" data-speed="1000" data-start="2000" data-easing="Power3.easeInOut"><a class="" href="#">SIGN UP TRAINING</a></div>
-                             <div class="tp-caption sfr flat-button-slider" data-x="601" data-y="440" data-speed="1000" data-start="2500" data-easing="Power3.easeInOut"><a class="" href="#">TRAINING PROGRAM</a></div>                    
-                        </li>
+                    <?php endforeach;?>
 
                     </ul>
                 </div>
@@ -46,7 +29,7 @@
                 <div class = "container">
                     <div class="row">
                         <div class="col-md-7 col-sm-12 flat-pdr-100">                       
-                            <h1 class="title-course">Choose The Training Tool You Want To Learn</h1>
+                            <h1 class="title-course">Choose The Courses Tool You Want To Learn</h1>
 
                             <p class='flat-lh-25'>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ulla mco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
@@ -94,10 +77,17 @@
             <div class = " flat-row popular-course">
                 <div class="container">
                     <div class="flat-title-section">
-                        <h1 class="title">CyberLAB TRAINING</h1>                
+                        <h1 class="title">CyberLAB Courses</h1>                
                     </div>
 
                     <div class="flat-course-grid button-right">
+
+                    <?php
+                        $this->db->order_by("id_courses","ASC");
+                        $quer = $this->db->get("tbl_courses");
+                        $result = $quer->result();
+                        foreach($result as $res11):
+                    ?>
                         <div class="flat-course">
                             <div class="featured-post">             
                                 <div class="overlay">
@@ -108,9 +98,9 @@
                             </div><!-- /.featured-post -->
 
                             <div class="course-content">
-                                <h4><a href="courses-single.html">Android - Basic Development</a> </h4>
+                                <h4><a href="courses-single.html"><?php echo $res11->title_courses;?></a> </h4>
 
-                                <div class="price">500K</div>    
+                                <div class="price"><?php echo number_format($res11->price,2,',','.')?></div>    
                                 
                                 <ul class="course-meta review">
                                     <li class="review-stars">
@@ -121,126 +111,71 @@
                                         <i class="fa fa-star-o"></i>
                                     </li>
 
-                                    <li>25 Reviews</li>
-                                </ul> 
-
-                                <p> Celebrate success right, the only way, apple. To succeed you must believe. When you believe, you will succeed.</p>
-
-                                <ul class="course-meta desc">
-                                    <li>
-                                        <h6>1 year</h6>
-                                        <span> Course</span>
-                                    </li>
-
-                                    <li>
-                                        <h6>25</h6>
-                                        <span> Class Size</span>
-                                    </li>
-
-                                    <li>
-                                        <h6><span class="course-time">7:00 - 10:00</span></h6>
-                                        <span> Class Duration</span>
-                                    </li>
-                                </ul> 
+                                </ul>
                             </div><!-- /.course-content -->
                         </div>
+                    <?php endforeach;?>
 
-                        <div class="flat-course">
-                            <div class="featured-post">             
-                                <div class="overlay">
-                                    <div class="link"></div>
-                                </div>
-
-                                <a href="courses-single.html"><img src="<?php echo base_url(); ?>assets/frontend/images/index/course2.png" alt="Course1"></a>
-                            </div><!-- /.featured-post -->
-
-                            <div class="course-content">
-                                <h4><a href="courses-single.html">Oracle - Basic Development</a> </h4>
-
-                                <div class="price">800K</div>    
-                                
-                                <ul class="course-meta review">
-                                    <li class="review-stars">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-half"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </li>
-
-                                    <li>25 Reviews</li>
-                                </ul> 
-
-                                <p> Celebrate success right, the only way, apple. To succeed you must believe. When you believe, you will succeed.</p>
-
-                                <ul class="course-meta desc">
-                                    <li>
-                                        <h6>1 year</h6>
-                                        <span> Course</span>
-                                    </li>
-
-                                    <li>
-                                        <h6>25</h6>
-                                        <span> Class Size</span>
-                                    </li>
-
-                                    <li>
-                                        <h6><span class="course-time">7:00 - 10:00</span></h6>
-                                        <span> Class Duration</span>
-                                    </li>
-                                </ul> 
-                            </div><!-- /.course-content -->
-                        </div>
-
-                        <div class="flat-course">
-                            <div class="featured-post">             
-                                <div class="overlay">
-                                    <div class="link"></div>
-                                </div>
-
-                                <a href="courses-single.html"><img src="<?php echo base_url(); ?>assets/frontend/images/index/course3.png" alt="Course1"></a>
-                            </div><!-- /.featured-post -->
-
-                            <div class="course-content">
-                                <h4><a href="courses-single.html">Adobe - Digital Basic</a> </h4>
-
-                                <div class="price">300K</div>    
-                                
-                                <ul class="course-meta review">
-                                    <li class="review-stars">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-half"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </li>
-
-                                    <li>25 Reviews</li>
-                                </ul> 
-
-                                <p> Celebrate success right, the only way, apple. To succeed you must believe. When you believe, you will succeed.</p>
-
-                                <ul class="course-meta desc">
-                                    <li>
-                                        <h6>1 year</h6>
-                                        <span> Course</span>
-                                    </li>
-
-                                    <li>
-                                        <h6>25</h6>
-                                        <span> Class Size</span>
-                                    </li>
-
-                                    <li>
-                                        <h6><span class="course-time">7:00 - 10:00</span></h6>
-                                        <span> Class Duration</span>
-                                    </li>
-                                </ul> 
-                            </div><!-- /.course-content -->
-                        </div>
                     </div><!-- /.flat-course grid -->
                 </div>
             </div>
+
+            <section class="flat-row pad-top-96 pad-bottom-100">
+    	    <div class="container">
+    	    	
+    	    	<div class="row teacher">
+                    <?php
+                        $this->db->order_by("id_teacher","ASC");
+                        $quer = $this->db->get("tbl_teacher");
+                        $result = $quer->result();
+                        foreach($result as $res11):
+                    ?>
+
+    		        <div class="flat-teacher-team-isotope button-right">
+    		       		
+    		            <div class="flat-teacher l col-md-3 col-sm-6 flat-hover-zoom">
+    		                <div class="entry-image">
+    		                    <img src="<?php echo $res11->url_foto;?>"/>
+    		                </div>
+    		                <div class="content">                               
+    		                    <h4 class="name"><?php echo $res11->name;?></h4>
+    		                    <ul class="flat-socials">
+    		                        <li class="facebook">
+    		                            <a href="#"><i class="fa fa-facebook"></i></a>
+    		                        </li>
+    		                        <li class="twitter">
+    		                            <a href="#"><i class="fa fa-twitter"></i></a>
+    		                        </li>
+    		                        <li class="linkedin">
+    		                            <a href="#"><i class="fa fa-linkedin"></i></a>
+    		                        </li>
+    		                        <li class="youtube">
+    		                            <a href="#"><i class="fa fa-youtube-play"></i></a>
+    		                        </li>
+    		                    </ul>
+    		                    <ul class="flat-information">
+    		                        <li class="position">
+    		                            <a href="#" title="position">Graphic Designer</a>
+    		                        </li>
+    		                        <li class="phone">
+    		                            <a href="+61383766284" title="Phone number"> 0084 962 226 602</a>
+    		                        </li>
+    		                        <li class="email">
+    		                            <a href="mailto:AlitStudios@gmail.com" title="Email address">contact@educate.com</a>
+    		                        </li>
+    		                        <li class="skype">
+    		                            <a href="skype:skype.educate?call" title="skype">skype.educate</a>
+    		                        </li>
+    		                    </ul>
+
+    		                </div>
+    		            </div>
+
+    		        </div><!-- /.flat-teacher-team -->
+                    <?php endforeach;?>
+                </div><!-- / .row -->
+    	    </div><!-- / .container -->
+        </section>
 
             <div class="flat-row join-us parallax parallax1 overlay bg-222">
                 <div class="overlay bg-222">

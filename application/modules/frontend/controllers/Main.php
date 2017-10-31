@@ -6,10 +6,13 @@ class Main extends CI_Controller{
     function __construct() {
         parent::__construct();
         $this->load->library('Template');
+        $this->load->model('MainModel','model');
     }
     
     public function index(){
-        $this->template->load('tmp/frontend','home');
+        $data['info'] = $this->model->info();
+        $data['socmed'] = $this->model->socmed();
+        $this->template->load('tmp/frontend','homeView',$data);
     }
 
     

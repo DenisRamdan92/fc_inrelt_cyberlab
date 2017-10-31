@@ -66,39 +66,36 @@
     				<div class="row">
     					<div class="col-md-12">
     						<div class="text-information">
-                                                    <p>Welcome to CyberLAB Forensics</p>
-                                                </div>
-    						<div class="text-information">
-                                                    <a href="#" ><img title="Bahasa Indonesia" style=" margin-left: 5px; width: 30px;" class="img-thumbnail" src="<?php echo base_url(); ?>assets/frontend/images/icon-indonesia.png"></a> <a href="#" ><img title="Language English"class="img-thumbnail" style="width: 30px;" src="<?php echo base_url(); ?>assets/frontend/images/icon-english.png"></a>
-    						</div>
+                                <p>Welcome to <?php echo $info['title_web']?></p>
+                            </div>
                             <div class="right-bar">
         						<ul class="flat-information">
         							<li class="phone">
-        								<a href="+622287346116" title="Phone number">+62 22 8734 6116</a>
+        								<a href="+622287346116" title="Phone number"> <?php echo $info['phone']?></a>
         							</li>
         							<li class="email">
-        								<a href="mailto:info@cyberlab-edu.com" title="Email address"> info@cyberlab-edu.com</a>
+        								<a href="mailto:info@cyberlab-edu.com" title="Email address"> <?php echo $info['email']?></a>
         							</li>
                                 </ul>
                                 <ul class="flat-socials">
         							<li class="facebook">
-        								<a href="#">
+        								<a href="<?php echo $socmed['facebook']?>">
         									<i class="fa fa-facebook"></i>
         								</a>
         							</li>
         							<li class="twitter">
-        								<a href="#">
+        								<a href="<?php echo $socmed['twitter']?>">
         									<i class="fa fa-twitter"></i>
         								</a>
         							</li>
         							<li class="linkedin">
-        								<a href="#">
+        								<a href="<?php echo $socmed['linkedin']?>">
         									<i class="fa fa-linkedin"></i>
         								</a>
         							</li>
-        							<li class="youtube">
-        								<a href="#">
-        									<i class="fa fa-youtube-play"></i>
+        							<li class="google-plus">
+        								<a href="<?php echo $socmed['google_plus']?>">
+        									<i class="fa fa-google-plus"></i>
         								</a>
         							</li>
         						</ul>
@@ -115,7 +112,7 @@
                 <div class="header-wrap clearfix">
                     <div id="logo" class="logo">
                         <a href="" rel="home">
-                            <img style="width: 200x; margin-left: -15px; margin-top: -10px;" src="<?php echo base_url();?>assets/frontend/images/logo_cyberlab.png" alt="image">
+                            <img style="width: 200x; margin-left: -15px; margin-top: -10px;" src="<?php echo $info['logo_url']?>" alt="image">
                         </a>
                     </div><!-- /.logo -->            
                     <div class="nav-wrap">
@@ -302,9 +299,11 @@
                                     <div class="col-md-12">
                                         <form class="flat-contact-form" id="contactform" method="post" action="./contact/contact-process.php">
 
-                                            <input type="email" value="" tabindex="2" placeholder="Your Email" name="email" id="email-contact" required="">
+                                            <input type="text" value="" tabindex="2" placeholder="subjek" name="subjek" id="subjek-contact" required="">
+
+                                            <input type="email" value="" tabindex="3" placeholder="Your Email" name="email" id="email-contact" required="">
                                            
-                                            <textarea class="type-input" tabindex="3" placeholder="Message" name="message" id="message-contact" required=""></textarea> 
+                                            <textarea class="type-input" tabindex="4" placeholder="Message" name="message" id="message-contact" required=""></textarea> 
                                             <br/><br/><br/>
                                             <div class="submit-wrap">
                                             <button class="flat-button bg-orange"><i class="fa fa-long-arrow-right"></i></button>
@@ -329,22 +328,22 @@
             <div class="container">
                 <ul class="flat-socials-v1">
                     <li class="facebook">
-                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="<?php echo $socmed['facebook']?>"><i class="fa fa-facebook"></i></a>
                     </li>
                     <li class="twitter">
-                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="<?php echo $socmed['twitter']?>"><i class="fa fa-twitter"></i></a>
                     </li>
-                    <li class="vimeo">
-                        <a href="#"><i class="fa fa-vimeo"></i></a>
+                    <li class="linkedin">
+                        <a href="<?php echo $socmed['linkedin']?>"><i class="fa fa-linkedin"></i></a>
                     </li>
-                    <li class="rss">
-                        <a href="#"><i class="fa fa-rss"></i></a>
+                    <li class="google-plus">
+                        <a href="<?php echo $socmed['google_plus']?>"><i class="fa fa-google-plus"></i></a>
                     </li>
                 </ul>    
                 <div class="row">
                     <div class="container-bottom">
                         <div class="copyright"> 
-                            <p>Copyright © 2017. Powered by <span><a href="#">Inrelt</a></span>. All Rights Reserved.</p>
+                            <p>Copyright © 2017. Powered by <span><a href="#">  </a></span>. All Rights Reserved.</p>
                         </div>
                     </div><!-- /.container-bottom -->
                 </div><!-- /.row -->

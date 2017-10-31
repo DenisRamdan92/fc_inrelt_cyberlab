@@ -16,7 +16,7 @@
                         <div class="form-group">
                             <label class="control-label mb-10" for="exampleInputpwd_1">Content</label>
                             <div class="input-group">
-                                <textarea name="content" id="content" id="" cols="100" rows="100"></textarea>
+                                <textarea name="content" class="form-control" id="content" id="" cols="100" rows="100"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
