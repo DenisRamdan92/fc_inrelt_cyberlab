@@ -5,7 +5,7 @@ class CoursesModel extends CI_Model{
 	
 	var $id_member = "";
 	var $column_order = array(null, 'u.title_courses'); //set column field database for datatable orderable
-    var $column_search = array('u.title_courses','e.title_material','g.title_lesson'); //set column field database for datatable searchable 
+    var $column_search = array('u.title_courses','e.title_material','g.title_lesson','t.name'); //set column field database for datatable searchable 
     var $order = array('u.id_courses' => 'desc'); // default order
 
 	function __construct()
@@ -17,7 +17,8 @@ class CoursesModel extends CI_Model{
     {
 		$this->db->select("*");
         $this->db->join("tbl_lesson g","g.id_lesson=u.id_lesson","left");
-        $this->db->join("tbl_material e","e.id_material=u.id_material","left");
+		$this->db->join("tbl_material e","e.id_material=u.id_material","left");
+        $this->db->join("tbl_teacher t","t.id_teacher=u.id_teacher","left");
 
         $this->db->from($this->table.' u');
  
@@ -75,6 +76,7 @@ class CoursesModel extends CI_Model{
     {
 		$this->db->join("tbl_lesson g","g.id_lesson=u.id_lesson","left");
         $this->db->join("tbl_material e","e.id_material=u.id_material","left");
+        $this->db->join("tbl_teacher t","t.id_teacher=u.id_teacher","left");
 
         $this->db->from($this->table.' u');
         return $this->db->count_all_results();
@@ -112,7 +114,21 @@ class CoursesModel extends CI_Model{
 			return false;
 		}
 	}
-
+	public function teacher_list($x)
+	{
+		$this->db->select("name,id_teacher");
+		$this->db->like("name",$x);
+		$get = $this->db->get('tbl_teacher');
+		if($get->num_rows()>0){
+			$g=$get->result();
+			foreach($g as $ge):
+			$a[] = array("itemName"=>$ge->name,"id"=>$ge->id_teacher);
+			endforeach;
+			echo json_encode($a);
+		}else{
+			return false;
+		}
+	}
 	public function check($username)
 	{
 		$this->db->where("title_courses",$username);
@@ -134,6 +150,10 @@ class CoursesModel extends CI_Model{
     //ref employee for user
     public function get_material() {
         $q_user = $this->db->get('tbl_material');
+        return $q_user->result();
+	}
+	public function get_teacher() {
+        $q_user = $this->db->get('tbl_teacher');
         return $q_user->result();
     }
     public function check_another($username,$id)

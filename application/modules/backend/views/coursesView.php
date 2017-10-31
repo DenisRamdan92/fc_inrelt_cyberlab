@@ -20,6 +20,7 @@
                                 <tr>
                                     <th width="20px">No</th>
                                     <th width="150px">id</th>
+                                    <th width="150px">Guru</th>
                                     <th width="100px">Kursus</th>
                                     <th width="90px">Pelajaran</th>
                                     <th width="50px">Materi</th>
@@ -52,6 +53,12 @@
                     <div class="form-group">
 						<label for="recipient-name" class="control-label mb-10">Judul Kursus </label>
 						<input type="text" class="form-control"  name="title_courses" id="title_courses" required="">
+					</div>
+					<div class="form-group">
+						<label for="recipient-name" class="control-label mb-10">Guru </label>
+						<select class="form-control"  name="id_teacher" id="id_teacher" required="">
+							<option value="" ></option>
+						</select>
 					</div>
 					<div class="form-group">
 						<label for="recipient-name" class="control-label mb-10">Pelajaran </label>
@@ -101,7 +108,7 @@
 	        //Set column definition initialisation properties.
     	    "columnDefs": [
         		{ 
-            		"targets": [ 0,1,2,3,4,5,6,7], //first column / numbering column
+            		"targets": [ 0,1,2,3,4,5,6,7,8], //first column / numbering column
             		"orderable": false, //set not orderable
         		},
        	 	],
@@ -121,14 +128,16 @@
 
         $(document).on("click","#edit_pengguna",function(){
 			var currentRow = $(this).closest("tr");
-            var id_material = currentRow.find("td:eq(4)").text();
-            var id_lesson =currentRow.find("td:eq(3)").text();
+            var id_material = currentRow.find("td:eq(5)").text();
+            var id_lesson =currentRow.find("td:eq(4)").text();
+            var id_teacher =currentRow.find("td:eq(2)").text();
             var content_courses = $.trim($(this).attr("content_courses"));
             var price = $.trim($(this).attr("price"));
             var title_courses = $.trim($(this).attr("title_courses"));
             var id_courses = $.trim($(this).attr("id_courses"));
 
 			$("#select2-id_material-container").text(id_material);
+			$("#select2-id_teacher-container").text(id_teacher);
 			$("#select2-id_lesson-container").text(id_lesson);
 			CKEDITOR.instances['content_courses'].setData(content_courses);
             $("#price").val(price);
@@ -151,7 +160,7 @@
 					error: function(){
 						alert('Error!');
 					},
-					data:"title_courses="+$.trim($("#title_courses").val())+"&id_lesson="+$.trim($("#id_lesson").val())+"&id_material="+$.trim($("#id_material").val())+"&content_courses="+CKEDITOR.instances['content_courses'].getData()+"&price="+$.trim($("#price").val()),
+					data:"title_courses="+$.trim($("#title_courses").val())+"&id_lesson="+$.trim($("#id_lesson").val())+"&id_material="+$.trim($("#id_material").val())+"&content_courses="+CKEDITOR.instances['content_courses'].getData()+"&price="+$.trim($("#price").val())+"&id_teacher="+$.trim($('#id_teacher').val()),
 					url:"<?php echo base_url();?>backend/courses/insert",
 					dataType:"json",
 					beforeSend: function(){
@@ -176,7 +185,7 @@
 					error: function(){
 						alert('Error!');
 					},
-					data:"id_courses="+$.trim($("#id_courses").val())+"&title_courses="+$.trim($("#title_courses").val())+"&id_lesson="+$.trim($("#id_lesson").val())+"&id_material="+$.trim($("#id_material").val())+"&content_courses="+CKEDITOR.instances['content_courses'].getData()+"&price="+$.trim($("#price").val()),
+					data:"id_courses="+$.trim($("#id_courses").val())+"&title_courses="+$.trim($("#title_courses").val())+"&id_lesson="+$.trim($("#id_lesson").val())+"&id_material="+$.trim($("#id_material").val())+"&content_courses="+CKEDITOR.instances['content_courses'].getData()+"&price="+$.trim($("#price").val())+"&id_teacher="+$.trim($('#id_teacher').val()),
 					url:"<?php echo base_url();?>backend/courses/update",
 					dataType:"json",
 					beforeSend: function(){
@@ -260,6 +269,33 @@
 		    ajax: {
 				cache: true,
 		        url: "<?php echo base_url();?>backend/courses/material_list",
+		        dataType: "json",
+		        type: "GET",
+		        data: function (params) {
+
+		            var queryParameters = {
+		                term: params.term
+		            }
+		            return queryParameters;
+		        },
+		        processResults: function (data) {
+		            return {
+		                results: $.map(data, function (item) {
+		                    return {
+		                        text: item.itemName,
+		                        id: item.id
+		                    }
+		                })
+		            };
+		        }
+		    }
+		});
+		$("#id_teacher").select2({
+		    minimumInputLength: 3,
+		    minimumResultsForSearch: 10,
+		    ajax: {
+				cache: true,
+		        url: "<?php echo base_url();?>backend/courses/teacher_list",
 		        dataType: "json",
 		        type: "GET",
 		        data: function (params) {

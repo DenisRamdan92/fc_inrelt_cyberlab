@@ -22,7 +22,7 @@ class Gallery extends CI_Controller {
     public function simpan()
     {
         
-        $config['upload_path']          = './assets/backend/img/teacher/';
+        $config['upload_path']          = './assets/backend/img/gallery/';
         $config['allowed_types']        = 'gif|jpg|png';
         $config['max_size']             = 80000;
         $this->load->library('upload', $config);
@@ -38,7 +38,7 @@ class Gallery extends CI_Controller {
         {
             $upload_data = $this->upload->data(); //Returns array of containing all of the data related to the file you uploaded.
             $file_name = $upload_data['file_name'];
-            $urlSlider = base_url()."assets/backend/img/teacher/".$file_name;
+            $urlSlider = base_url()."assets/backend/img/gallery/".$file_name;
         }
         $tema = $this->input->post('tema');
         $karegori = $this->input->post('kategoriList');
