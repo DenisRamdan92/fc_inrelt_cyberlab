@@ -16,8 +16,12 @@
                             <div class="tp-caption sfr desc-slide center" data-x="108" data-y="280" data-speed="1000" data-start="1500" data-easing="Power3.easeInOut">                       
                                 <br> <?php echo wordwrap($res11->content,100,"<br>")?>
                             </div>    
-                            <div class="tp-caption sfl flat-button-slider bg-orange" data-x="420" data-y="439" data-speed="1000" data-start="2000" data-easing="Power3.easeInOut"><a class="" href="#">SIGN UP TRAINING</a></div>
-                             <div class="tp-caption sfr flat-button-slider" data-x="601" data-y="440" data-speed="1000" data-start="2500" data-easing="Power3.easeInOut"><a class="" href="#">TRAINING PROGRAM</a></div>                    
+                            <div class="tp-caption sfl flat-button-slider bg-orange" data-x="420" data-y="439" data-speed="1000" data-start="2000" data-easing="Power3.easeInOut">
+                                <?php echo anchor('frontend/register','SIGN UP COURSES');?>
+                            </div>
+                             <div class="tp-caption sfr flat-button-slider" data-x="601" data-y="440" data-speed="1000" data-start="2500" data-easing="Power3.easeInOut">
+                                <?php echo anchor('frontend/login','LOG IN COURSES');?>
+                             </div>                    
                         </li>
                     <?php endforeach;?>
 
@@ -38,7 +42,7 @@
                             <div class="flat-spacer"></div>  
 
                             <div class="flat-button-container">
-                                <a class="flat-button orange" href="courses.html">VIEW ALL TRAINING</a>
+                                <?php echo anchor('frontend/courses','VIEW ALL COURSES','class="flat-button orange"');?>
                             </div> 
                         </div>
 
@@ -122,7 +126,9 @@
 
             <section class="flat-row pad-top-96 pad-bottom-100">
     	    <div class="container">
-    	    	
+                    <div class="flat-title-section">
+                        <h1 class="title">CyberLAB Teacher</h1>                
+                    </div>
     	    	<div class="row teacher">
                     <?php
                         $this->db->order_by("id_teacher","ASC");
@@ -141,30 +147,27 @@
     		                    <h4 class="name"><?php echo $res11->name;?></h4>
     		                    <ul class="flat-socials">
     		                        <li class="facebook">
-    		                            <a href="#"><i class="fa fa-facebook"></i></a>
+    		                            <a href="<?php echo $res11->facebook;?>"><i class="fa fa-facebook"></i></a>
     		                        </li>
     		                        <li class="twitter">
-    		                            <a href="#"><i class="fa fa-twitter"></i></a>
+    		                            <a href="<?php echo $res11->twitter;?>"><i class="fa fa-twitter"></i></a>
     		                        </li>
     		                        <li class="linkedin">
-    		                            <a href="#"><i class="fa fa-linkedin"></i></a>
+    		                            <a href="<?php echo $res11->linkedin;?>"><i class="fa fa-linkedin"></i></a>
     		                        </li>
     		                        <li class="youtube">
-    		                            <a href="#"><i class="fa fa-youtube-play"></i></a>
+    		                            <a href="<?php echo $res11->youtube;?>"><i class="fa fa-youtube-play"></i></a>
     		                        </li>
     		                    </ul>
     		                    <ul class="flat-information">
     		                        <li class="position">
-    		                            <a href="#" title="position">Graphic Designer</a>
+    		                            <a href="#" title="skill"><?php echo $res11->main_material;?>&nbsp;&nbsp;&nbsp;&nbsp;</a>
     		                        </li>
     		                        <li class="phone">
-    		                            <a href="+61383766284" title="Phone number"> 0084 962 226 602</a>
+    		                            <a href="+61383766284" title="Phone number"><?php echo $res11->telepon;?>&nbsp;&nbsp;&nbsp;&nbsp;</a>
     		                        </li>
     		                        <li class="email">
-    		                            <a href="mailto:AlitStudios@gmail.com" title="Email address">contact@educate.com</a>
-    		                        </li>
-    		                        <li class="skype">
-    		                            <a href="skype:skype.educate?call" title="skype">skype.educate</a>
+    		                            <a href="mailto:AlitStudios@gmail.com" title="Email address"><?php echo $res11->email;?>&nbsp;&nbsp;&nbsp;&nbsp;</a>
     		                        </li>
     		                    </ul>
 
@@ -205,92 +208,51 @@
                     </div>
 
                     <div class="row post-lastest-new">
-                        <div class="post col-md-4 col-xs-12 col-sm-6 flat-hover-zoom">
-                            <div class="featured-post">
-                                <div class="entry-image">
-                                    <img src="<?php echo base_url(); ?>assets/frontend/images/blog/Blog-02.jpg" alt="image">
-                                </div>
-                            </div>
 
-                            <div class="date-post">
-                                <span class="numb">19</span>
-                                <span>Mar</span>
-                                <span style="font-size: 10pt; line-height: 50%; margin-bottom: 7px">2017</span>
-                            </div>
-
-                            <div class="content-post">
-                                <h2 class="title-post">
-                                    <a href="flat-information.html">Seminar Cybersecurity RANSOMWARE</a>
-                                </h2>
-
-                                <div class="entry-content">
-                                    <p>Thousands of teenagers across the UK will have school lessons in mindfulness in an experiment designed to see if it can protect against mental illness.</p>
-                                </div><!-- /entry-post -->
-
-                                <div class="entry-meta style1">
-                                    <p>Posted in:<span><a href="#"> Hobbies</a></span></p>
-                                    <p>Tags:<span><a href="#"> church,</a></span><span><a href="#"> educate</a></span></p>
-                                </div>
-                            </div><!-- /content-post -->
-                        </div>
+                    <?php
+                        $this->db->order_by("id_blog","ASC");
+                        $quer = $this->db->query("select a.*,title_tag from tbl_blog a LEFT JOIN tbl_tag b ON a.id_tag = b.id_tag");
+                        $result = $quer->result();
+                        foreach($result as $res11):
+                    ?>
 
                         <div class="post col-md-4 col-xs-12 col-sm-6 flat-hover-zoom">
                             <div class="featured-post">
                                 <div class="entry-image">
-                                    <img src="<?php echo base_url(); ?>assets/frontend/images/blog/Blog-03.jpg" alt="image">
+                                    <img src="<?php echo $res11->img_url;?>" alt="image">
                                 </div>
                             </div>
 
+                            <?php
+                            
+                                $date=date_create("{$res11->date_blog}");
+                                
+                            ?>
+
                             <div class="date-post">
-                                <span class="numb">17</span>
-                                <span>Jun</span>
-                                <span style="font-size: 10pt; line-height: 50%; margin-bottom: 7px">2016</span>
+                                <span class="numb"><?php echo date_format($date,"d"); ?></span>
+                                <span><?php echo date_format($date,"M"); ?></span>
+                                <span style="font-size: 10pt; line-height: 50%; margin-bottom: 7px"><?php echo date_format($date,"Y"); ?></span>
                             </div>
 
                             <div class="content-post">
                                 <h2 class="title-post">
-                                    <a href="flat-information.html">NgabuburIT With Hacker VS IT Security</a>
+                                    <a href="flat-information.html"><?php echo $res11->title_blog;?></a>
                                 </h2>
 
                                 <div class="entry-content">
-                                    <p>Thousands of teenagers across the UK will have school lessons in mindfulness in an experiment designed to see if it can protect against mental illness.</p>
+                                    <p><?php echo substr($res11->content_blog,0,200)?> . . .</p>
                                 </div><!-- /entry-post -->
 
                                 <div class="entry-meta style1">
-                                    <p>Posted in:<span><a href="#"> Hobbies</a></span></p>
-                                    <p>Tags:<span><a href="#"> church,</a></span><span><a href="#"> educate</a></span></p>
+                                    <p>Posted in:<span><a href="#"> <?php echo $res11->id_user;?></a></span></p>
+                                    <p>Tags:<span><a href="#"> <?php echo $res11->title_tag;?></a></span></p>
                                 </div>
                             </div><!-- /content-post -->
                         </div>
 
-                        <div class="post col-md-4 col-xs-12 col-sm-6 flat-hover-zoom">
-                                <div class="featured-post">
-                                    <div class="entry-image">
-                                        <img src="<?php echo base_url(); ?>assets/frontend/images/blog/Blog-01.jpg" alt="image">
-                                    </div>
-                                </div>
+                    <?php endforeach;?>  
 
-                            <div class="date-post">
-                                <span class="numb">29</span>
-                                <span>Jan</span>
-                                <span style="font-size: 10pt; line-height: 50%; margin-bottom: 7px">2016</span>
-                            </div>
-
-                                <div class="content-post">
-                                    <h2 class="title-post">
-                                        <a href="flat-information.html">Seminar The Art Of Hacking</a>
-                                    </h2>
-
-                                    <div class="entry-content">
-                                        <p>Thousands of teenagers across the UK will have school lessons in mindfulness in an experiment designed to see if it can protect against mental illness.</p>
-                                    </div><!-- /entry-post -->
-
-                                    <div class="entry-meta style1">
-                                        <p>Posted in:<span><a href="#"> Hobbies</a></span></p>
-                                        <p>Tags:<span><a href="#"> church,</a></span><span><a href="#"> educate</a></span></p>
-                                    </div>
-                                </div><!-- /content-post -->
-                            </div>
                     </div>
 
                 </div>

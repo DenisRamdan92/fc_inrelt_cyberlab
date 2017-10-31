@@ -71,32 +71,18 @@
                             <div class="right-bar">
         						<ul class="flat-information">
         							<li class="phone">
-        								<a href="+622287346116" title="Phone number"> <?php echo $info['phone']?></a>
+        								<a href="<?php echo $info['phone']?>" title="Phone number"> <?php echo $info['phone']?></a>
         							</li>
         							<li class="email">
-        								<a href="mailto:info@cyberlab-edu.com" title="Email address"> <?php echo $info['email']?></a>
+        								<a href="mailto:<?php echo $info['email']?>" title="Email address"> <?php echo $info['email']?></a>
         							</li>
                                 </ul>
                                 <ul class="flat-socials">
-        							<li class="facebook">
-        								<a href="<?php echo $socmed['facebook']?>">
-        									<i class="fa fa-facebook"></i>
-        								</a>
+                                    <li class="facebook">
+                                        <?php echo anchor('frontend/register','<i class="fa fa-user"></i> Register');?>
         							</li>
-        							<li class="twitter">
-        								<a href="<?php echo $socmed['twitter']?>">
-        									<i class="fa fa-twitter"></i>
-        								</a>
-        							</li>
-        							<li class="linkedin">
-        								<a href="<?php echo $socmed['linkedin']?>">
-        									<i class="fa fa-linkedin"></i>
-        								</a>
-        							</li>
-        							<li class="google-plus">
-        								<a href="<?php echo $socmed['google_plus']?>">
-        									<i class="fa fa-google-plus"></i>
-        								</a>
+                                    <li class="gooogle-plus">
+                                        <?php echo anchor('frontend/login','<i class="fa fa-lock"></i> login');?>
         							</li>
         						</ul>
                             </div>
@@ -294,16 +280,14 @@
 
                         <div class="col-md-3">
                             <div class="widget widget-quick-contact">
-                                <h5 class="widget-title">Quick Contact</h5>
+                                <h5 class="widget-title">Apply For A Teacher</h5>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <form class="flat-contact-form" id="contactform" method="post" action="./contact/contact-process.php">
 
-                                            <input type="text" value="" tabindex="2" placeholder="subjek" name="subjek" id="subjek-contact" required="">
-
                                             <input type="email" value="" tabindex="3" placeholder="Your Email" name="email" id="email-contact" required="">
                                            
-                                            <textarea class="type-input" tabindex="4" placeholder="Message" name="message" id="message-contact" required=""></textarea> 
+                                            <textarea class="type-input" tabindex="4" placeholder="your writing" name="message" id="message-contact" required=""></textarea> 
                                             <br/><br/><br/>
                                             <div class="submit-wrap">
                                             <button class="flat-button bg-orange"><i class="fa fa-long-arrow-right"></i></button>
