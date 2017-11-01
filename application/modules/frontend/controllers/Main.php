@@ -15,29 +15,6 @@ class Main extends CI_Controller{
         $data['aboutus'] = $this->model->aboutus();
         $this->template->load('tmp/frontend','homeView',$data);
     }
-    public function home(){
-        $this->template->load('tmp/frontend','home');
-    }
-    
-    public function about(){
-        $this->template->load('tmp/frontend','about');
-    }
-    
-    public function training(){
-        $this->template->load('tmp/frontend','training');
-    }
-    
-    public function team(){
-        $this->template->load('tmp/frontend','team');
-    }
-    
-    public function product(){
-        $this->template->load('tmp/frontend','product');
-    }
-    
-    public function contact(){
-        $this->template->load('tmp/frontend','contact');
-    }
     //////homeview
     public function newsletter()
     {

@@ -69,14 +69,6 @@
                                 <p>Welcome to <?php echo $info['title_web']?></p>
                             </div>
                             <div class="right-bar">
-        						<ul class="flat-information">
-        							<li class="phone">
-        								<a href="<?php echo $info['phone']?>" title="Phone number"> <?php echo $info['phone']?></a>
-        							</li>
-        							<li class="email">
-        								<a href="mailto:<?php echo $info['email']?>" title="Email address"> <?php echo $info['email']?></a>
-        							</li>
-                                </ul>
                                 <ul class="flat-socials">
                                     <li class="gooogle-plus">
                                         <?php echo anchor('frontend/login','<i class="fa fa-lock"></i> login');?>
@@ -135,19 +127,6 @@
                             </ul><!-- /.menu -->
                         </nav><!-- /.mainnav -->    
                     </div><!-- /.nav-wrap -->
-
-                    <div id="s" class="show-search">
-                            <a href="#"><i class="fa fa-search"></i></a>         
-                        </div><!-- /.show-search -->
-                    
-                    <div class="submenu top-search">
-                        <div class="widget widget_search">
-                            <form class="search-form">
-                                <input type="search" class="search-field" placeholder="Search …">
-                                <input type="submit" class="search-submit">
-                            </form>
-                        </div>
-                    </div>
                 </div><!-- /.header-inner --> 
             </div>
         </header><!-- /.header -->
