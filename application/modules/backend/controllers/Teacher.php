@@ -39,9 +39,25 @@ class Teacher extends CI_Controller {
             $urlSlider = base_url()."assets/backend/img/teacher/".$file_name;
         }
         $tema = $this->input->post('name');
+        $primarySkill = $this->input->post('primarySkill');
+        $phone = $this->input->post('phone');
+        $email = $this->input->post('email');
+        $facebook = $this->input->post('facebook');
+        $twitter = $this->input->post('twitter');
+        $linkedin = $this->input->post('linkedin');
+        $youtube = $this->input->post('youtube');
+        $status = $this->input->post('status');
         $karegori = $this->input->post('description');
         $data = array(
             'name' => $tema,
+            'main_material' => $primarySkill,
+            'telepon' => $phone,
+            'email' => $email,
+            'facebook' => $facebook,
+            'twitter' => $twitter,
+            'linkedin' => $linkedin,
+            'youtube' => $youtube,
+            'status' => $status,
             'description' => $karegori,
             'url_foto' => $urlSlider
 		);

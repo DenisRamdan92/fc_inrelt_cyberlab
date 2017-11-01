@@ -215,8 +215,9 @@ class Courses extends CI_Controller{
 			$row[] = ucfirst($files_->title_material);
 			$row[] = ucfirst($files_->content_courses);
 			$row[] = ucfirst($files_->price);
+			$row[] = "<img src='".$files_->url_image."' alt='dont have image' sizes='100x100'>";
 
-			$row[] = "<button id_courses='".$files_->id_courses."' id_material='".$files_->id_material."' id_teacher='".$files_->id_teacher."' title_courses='".$files_->title_courses."' content_courses='".$files_->content_courses."' price='".$files_->price."' class='btn btn-info' id='edit_pengguna'><i class='fa fa-pencil'></i> Edit</button> <button id='delete_pengguna' id_courses=".$files_->id_courses."  class='btn btn-danger'><i class='fa fa-trash'></i> Delete</button>";
+			$row[] = "<button id_courses='".$files_->id_courses."' id_material='".$files_->id_material."' id_teacher='".$files_->id_teacher."' title_courses='".$files_->title_courses."' content_courses='".$files_->content_courses."' price='".$files_->price."' class='btn btn-info btn-xs' id='edit_pengguna'><i class='fa fa-pencil'></i> Edit</button> <button id_courses='".$files_->id_courses."' class='btn btn-success btn-xs' id='edit_pengguna_foto'><i class='fa fa-image'></i> Edit Picture</button> <button id='delete_pengguna' id_courses=".$files_->id_courses."  class='btn btn-danger btn-xs'><i class='fa fa-trash'></i> Delete</button>";
 			
             $data_[] = $row;
 
@@ -312,6 +313,34 @@ class Courses extends CI_Controller{
 	{
 		$this->model->teacher_list($this->input->get('term'));
 
+	}
+	public function updateFoto($id)
+	{
+		$config['upload_path']          = './assets/backend/img/courses/';
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['max_size']             = 80000;
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+
+        if ( ! $this->upload->do_upload('urlSlider'))
+        {
+             $urlSlider = "";
+             $error = $this->upload->display_errors();
+             echo $error;
+        }
+        else
+        {
+            $upload_data = $this->upload->data(); //Returns array of containing all of the data related to the file you uploaded.
+            $file_name = $upload_data['file_name'];
+            $urlSlider = base_url()."assets/backend/img/courses/".$file_name;
+        }
+        $data = array(
+            'url_image' => $urlSlider
+		);
+		$this->db->where('id_courses',$id);
+        $this->db->update('tbl_courses',$data);
+        $this->session->set_flashdata('msg_error',"<p style='color:green;'>Data berhasil di simpan</p>");
+        redirect('courses');
 	}
 }
 ?>

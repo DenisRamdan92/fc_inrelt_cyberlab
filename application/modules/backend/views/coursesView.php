@@ -26,6 +26,7 @@
                                     <th width="50px">Materi</th>
                                     <th width="230px">Penjelasan</th>
                                     <th width="230px">Harga</th>
+									<th width="230px">foto</th>
                                     <th width="230px">Aksi</th>
                                 </tr>
                             </thead>
@@ -89,6 +90,36 @@
 		</div>
 	</div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalfoto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
+	<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h5 class="modal-title" id="title_pengguna"> Tambah Foto</h5>
+			</div>
+			<div class="modal-body">
+				
+				<?php echo form_open('backend/courses/updateFoto', "method='post', class='form form-horizontal' id='simpanform', enctype='multipart/form-data'")?>
+					<div class="form-group">
+						<label class="control-label col-sm-2" for="fileFOto">File</label>
+						<div class="col-sm-10">
+							<input type="file" class="form-control" id="urlSlider" name="urlSlider" data-toggle="tooltip" title="foto ideal 800 x 800 pixel" required>
+						</div>
+					</div>
+					<div class="form-group">        
+						<div class="col-sm-offset-2 col-sm-10">
+							<button type="submit" class="btn btn-default form-control" id="simpanfoto" name="simpanfoto"  required>Simpan</button>
+						</div>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+</div>
+
 <script src="<?php echo base_url()?>assets/backend/vendors/ckeditor/ckeditor.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -147,6 +178,14 @@
 
             $('#modalPengguna').modal('show');
             $("#title_pengguna").text('Edit Kursus');
+
+	    });
+
+		$(document).on("click","#edit_pengguna_foto",function(){
+            var id_courses = $.trim($(this).attr("id_courses"));
+
+			$('#simpanform').attr('action','<?php echo base_url()?>backend/courses/updateFoto/'+id_courses);
+            $('#modalfoto').modal('show');
 
 	    });
 		

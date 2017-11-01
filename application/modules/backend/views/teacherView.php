@@ -15,6 +15,7 @@
 					  <strong>Perhatian !</strong>   <?php echo $this->session->flashdata('msg_error'); ?> 
 				  </div>
 			  <?php } ?>
+			  
 	  <div class="tab-content">
 		  <div id="menu2" class="tab-pane fade in active">
 		  <h3>Form Input</h3>
@@ -28,9 +29,68 @@
 			  </div>
 
 			  <div class="form-group">
+			  <label class="control-label col-sm-2" for="primarySkill">Primary Skill</label>
+			  <div class="col-sm-10">
+			  <input type="text" class="form-control" id="primarySkill" name="primarySkill" required>
+			  </div>
+			  </div>
+
+			  <div class="form-group">
+			  <label class="control-label col-sm-2" for="phone">Phone</label>
+			  <div class="col-sm-10">
+			  <input type="text" class="form-control" id="phone" name="phone" required>
+			  </div>
+			  </div>
+
+			  <div class="form-group">
+			  <label class="control-label col-sm-2" for="email">Email</label>
+			  <div class="col-sm-10">
+			  <input type="text" class="form-control" id="email" name="email" required>
+			  </div>
+			  </div>
+
+			  <div class="form-group">
+			  <label class="control-label col-sm-2" for="facebook">Facebook Link</label>
+			  <div class="col-sm-10">
+			  <input type="text" class="form-control" id="facebook" name="facebook" required>
+			  </div>
+			  </div>
+
+			  <div class="form-group">
+			  <label class="control-label col-sm-2" for="twitter">Twitter Link</label>
+			  <div class="col-sm-10">
+			  <input type="text" class="form-control" id="twitter" name="twitter" required>
+			  </div>
+			  </div>
+
+			  <div class="form-group">
+			  <label class="control-label col-sm-2" for="linkedin">LinkedIn</label>
+			  <div class="col-sm-10">
+			  <input type="text" class="form-control" id="linkedin" name="linkedin" required>
+			  </div>
+			  </div>
+
+			  <div class="form-group">
+			  <label class="control-label col-sm-2" for="youtube">Youtube Link Chanel</label>
+			  <div class="col-sm-10">
+			  <input type="text" class="form-control" id="youtube" name="youtube" required>
+			  </div>
+			  </div>
+
+			  <div class="form-group">
 			  <label class="control-label col-sm-2" for="description">Deskripsi</label>
 			  <div class="col-sm-10">
 			  <input type="text" class="form-control" id="description" name="description" required>
+			  </div>
+			  </div>
+
+			  <div class="form-group">
+			  <label class="control-label col-sm-2" for="status">Status</label>
+			  <div class="col-sm-10">
+				<select name="status" id="status" class="form-control">
+					<option value="1">Aktif</option>
+					<option value="0">Tidak Aktif</option>
+				</select>
 			  </div>
 			  </div>
 
@@ -40,6 +100,8 @@
 			  <input type="file" id="urlSlider" name="urlSlider" data-toggle="tooltip" title="foto ideal 800 x 800 pixel" required>
 			  </div>
 			  </div>
+
+			  
 			  <div class="form-group">        
 			  <div class="col-sm-offset-2 col-sm-10">
 			  <button type="submit" class="btn btn-default" id="simpan" name="simpan"  required>Simpan</button>
@@ -63,6 +125,14 @@
 							<th>Id</th>
 							<th>Nama</th>
 							<th>Deskripsi</th>
+							<th>Primary Skill</th>
+							<th>phone</th>
+							<th>email</th>
+							<th style="display:none">facebook</th>
+							<th style="display:none">twitter</th>
+							<th style="display:none">linkedin</th>
+							<th style="display:none">youtube</th>
+							<th>status</th>
 							<th>foto</th>
 							</tr>
 							</thead>
@@ -71,14 +141,27 @@
 							$i = 1;
 							foreach ($datateacher as $de)
 							{
-							echo "<tr>";
-							echo "<td style='background-color:rgba(136, 135, 135, 0.32);'>".$i."</td>";
-							echo "<td><i id_teacher=".$de['id_teacher']." id='edit".$de['id_teacher']."' name='edit".$de['id_teacher']."' class='btn btn-warning btn-sm fa fa-edit editModal' title='Edit' data-toggle='modal' data-target='#modaledit'></i></td>";
-							echo "<td>".$de['id_teacher']."</td>";
-							echo "<td>".$de['name']."</td>";
-							echo "<td>".$de['description']."</td>";
-							echo "<td>"."<img src='".$de['url_foto']."' width='100px' style='border:1px solid'>"."</td>";
-							echo "</tr>";
+								if ($de['status'] == 1) {
+									$statusstr = 'Aktif';
+								} else {
+									$statusstr = 'Tidak Aktif';
+								}
+								echo "<tr>";
+								echo "<td style='background-color:rgba(136, 135, 135, 0.32);'>".$i."</td>";
+								echo "<td><i id_teacher=".$de['id_teacher']." id='edit".$de['id_teacher']."' name='edit".$de['id_teacher']."' statusTeacher='".$de['status']."' class='btn btn-warning btn-sm fa fa-edit editModal' title='Edit' data-toggle='modal' data-target='#modaledit'></i></td>";
+								echo "<td>".$de['id_teacher']."</td>";
+								echo "<td>".$de['name']."</td>";
+								echo "<td>".$de['description']."</td>";
+								echo "<td>".$de['main_material']."</td>";
+								echo "<td>".$de['telepon']."</td>";
+								echo "<td>".$de['email']."</td>";
+								echo "<td style='display:none'>".$de['facebook']."</td>";
+								echo "<td style='display:none'>".$de['twitter']."</td>";
+								echo "<td style='display:none'>".$de['linkedin']."</td>";
+								echo "<td style='display:none'>".$de['youtube']."</td>";
+								echo "<td>".$statusstr."</td>";
+								echo "<td>"."<img src='".$de['url_foto']."' width='100px' style='border:1px solid'>"."</td>";
+								echo "</tr>";
 							$i++;
 							}
 							?>     
@@ -102,14 +185,30 @@
 <script src="<?php echo base_url(); ?>assets/backend/vendors/bower_components/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript">
   $(document).ready(function(){
+	  $('#dataemployee').DataTable();
 	  $(document).on('click','.editModal',function(){
-			var currentRow = $(this).closest("tr");
+		  var currentRow = $(this).closest("tr");
 		  var name = currentRow.find("td:eq(3)").text();
 		  var id = $(this).attr('id_teacher');
 		  var description  = currentRow.find("td:eq(4)").text();
-		  
+		  var mainMaterial  = currentRow.find("td:eq(5)").text();
+		  var telepon  = currentRow.find("td:eq(6)").text();
+		  var email  = currentRow.find("td:eq(7)").text();
+		  var facebook  = currentRow.find("td:eq(8)").text();
+		  var twitter  = currentRow.find("td:eq(9)").text();
+		  var linkedin  = currentRow.find("td:eq(10)").text();
+		  var youtube  = currentRow.find("td:eq(11)").text();
+		  var status = $(this).attr('statusTeacher');
 		  $('#name').val(name);
 		  $('#description').val(description);
+		  $('#primarySkill').val(mainMaterial);
+		  $('#phone').val(telepon);
+		  $('#email').val(email);
+		  $('#facebook').val(facebook);
+		  $('#twitter').val(twitter);
+		  $('#linkedin').val(linkedin);
+		  $('#youtube').val(youtube);
+		  $('#status').val(status);
 		  $('#simpan').html('Edit');
 		  $('#tabform').attr('class','active');
 		  $('#tabform2').attr('class','');
