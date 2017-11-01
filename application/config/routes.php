@@ -58,6 +58,7 @@ $route['courses'] = "backend/courses";
 $route['material'] = "backend/courses/material";
 $route['lesson'] = "backend/courses/lesson";
 $route['offer'] = "backend/offer";
+$route['newsletter'] = "backend/newsletter";
 $route['gallery'] = "backend/gallery";
 $route['contact'] = "backend/contact";
 $route['employee'] = "backend/employee";

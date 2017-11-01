@@ -78,9 +78,6 @@
         							</li>
                                 </ul>
                                 <ul class="flat-socials">
-                                    <li class="facebook">
-                                        <?php echo anchor('frontend/register','<i class="fa fa-user"></i> Register');?>
-        							</li>
                                     <li class="gooogle-plus">
                                         <?php echo anchor('frontend/login','<i class="fa fa-lock"></i> login');?>
         							</li>
@@ -108,30 +105,33 @@
                         <nav id="mainnav" class="mainnav">
                             <ul class="menu"> 
                                 <li class="home">
-                                    <a href="home">Home</a>
+                                    <?php echo anchor('frontend/main','Home');?>
                                 </li>
                                 
                                 <li>
-                                    <a href="about">About</a>
+                                    <?php echo anchor('frontend/courses','Courses');?>
                                 </li>
 
-                                 <li class="has-sub"><a href="training">Training</a>
-                                	<ul class="submenu"> 
-                                        <li><a href="training.html">Training</a></li>
-                                        <li><a href="training1.html">Training 1</a></li> 
-                                        <li><a href="training2.html">Training 2</a></li>   
-                                        <li><a href="training3.html">Training 3</a></li>   
-                                    </ul><!-- /.submenu -->
-                                </li>
-
-                                <li><a href="team">Team</a>              
+                                <li>
+                                    <?php echo anchor('frontend/about','About');?>             
                                 </li>                               
 
-                                <li><a href="product">Product</a>
+                                <li>
+                                    <?php echo anchor('frontend/teacher','Teacher');?>
                                 </li>
 
-                                <li><a href="contact">Contact</a>
+                                <li>
+                                    <?php echo anchor('frontend/blog','Blog');?>
                                 </li>
+
+                                <li>
+                                    <?php echo anchor('frontend/gallery','Gallery');?>
+                                </li>
+
+                                <li>
+                                    <?php echo anchor('frontend/contact','Contact');?>
+                                </li>
+
                             </ul><!-- /.menu -->
                         </nav><!-- /.mainnav -->    
                     </div><!-- /.nav-wrap -->
@@ -160,137 +160,39 @@
             <div class="footer-widgets">   
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-3">  
+                        <div class="col-md-4">  
                             <div class="widget widget-text">
-                                <img src="<?php echo base_url()?>assets/frontend/images/blog/Footer-01.png" alt="image">
+                                <iframe src="<?php echo $aboutus['url_video']?>" frameborder="0" width="100%" height="200px"></iframe>
                                 <ul>
-                                    <li class="address"><a href="#">Jl. Soekarno Hatta No. 693 Bandung</li>
-                                    <li class="phone"><a href="#">+62 22 8734 6116</a></li>
-                                    <li class="email"><a href="#">info@cyberlab-edu.com</a></li>  
+                                    <li class="address"><a href="#"><?php echo $info['addreess']?></li>
+                                    <li class="phone"><a href="#"><?php echo $info['phone']?></a></li>
+                                    <li class="email"><a href="#"><?php echo $info['email']?></a></li>  
                                 </ul> 
                             </div><!-- /.widget -->      
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="widget widget_tweets clearfix">
-                                <h5 class="widget-title">User Links</h5>
-                                <ul class="link-left">
-                                    <li>
-                                        <a href="#">About Us</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">About</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Training</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Team</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Product</a>
-                                    </li>
-                                      <li>
-                                        <a href="#">FAQs</a>
-                                    </li>
-                                </ul>
-                                <ul class="link-right">
-                                    <li>
-                                        <a href="#">Become a Trainer</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Maintenance</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Language Packs</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">LearnPress</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Release Status</a>
-                                    </li>
-                                </ul>
+                                <h5 class="widget-title"><?php echo $aboutus['title']?></h5>
+                                <?php echo $aboutus['content']?>
                             </div><!-- /.widget-recent-tweets -->
                         </div><!-- /.col-md-2 -->
 
-                        <div class="col-md-3">
-                            <div class="widget widget_recent-courses">
-                                <h5 class="widget-title">Recent Training</h5>
-                                <ul class="recent-courses-news clearfix">
-                                    <li>
-                                        <div class="thumb">
-                                            <img src="<?php echo base_url()?>assets/frontend/images/blog/Footer-02.png" alt="image">
-                                        </div>
-                                        <div class="text">
-                                            <a href="#">Android Basic Development</a>
-                                        </div>
-                                        <div class="review-rating">
-                                            <ul class="flat-reviews">
-                                                <li class="star">
-                                                    <a href="#"><i class="fa fa-star"></i></a>
-                                                </li>
-                                                <li class="star">
-                                                    <a href="#"><i class="fa fa-star"></i></a>
-                                                </li>
-                                                <li class="star">
-                                                    <a href="#"><i class="fa fa-star"></i></a>
-                                                </li>
-                                                <li class="star">
-                                                    <a href="#"><i class="fa fa-star-half-o"></i></a>
-                                                </li>
-                                                 <li class="star">
-                                                    <a href="#"><i class="fa fa-star-o"></i></a>
-                                                </li>
-                                            </ul>
-                                            <p>25 Reviews</p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="thumb">
-                                            <img src="<?php echo base_url()?>assets/frontend/images/blog/Footer-03.png" alt="image">
-                                        </div>
-                                        <div class="text">
-                                            <a href="#">Adobe Digital Basic</a>
-                                        </div>
-                                        <div class="review-rating">
-                                            <ul class="flat-reviews">
-                                                <li class="star">
-                                                    <a href="#"><i class="fa fa-star"></i></a>
-                                                </li>
-                                                <li class="star">
-                                                    <a href="#"><i class="fa fa-star"></i></a>
-                                                </li>
-                                                <li class="star">
-                                                    <a href="#"><i class="fa fa-star"></i></a>
-                                                </li>
-                                                <li class="star">
-                                                    <a href="#"><i class="fa fa-star-half-o"></i></a>
-                                                </li>
-                                                 <li class="star">
-                                                    <a href="#"><i class="fa fa-star-o"></i></a>
-                                                </li>
-                                            </ul>
-                                            <p>25 Reviews</p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div><!-- /.widget-quick-contact -->
-                        </div><!-- /.col-md-4-->
-
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="widget widget-quick-contact">
-                                <h5 class="widget-title">Apply For A Teacher</h5>
+                                <h5 class="widget-title">Apply For a Teacher</h5>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <form class="flat-contact-form" id="contactform" method="post" action="./contact/contact-process.php">
-
+                                    <?php echo form_open('frontend/main/contactSend',"method='post'")?>
+                                            
+                                            <input type="text" value="" tabindex="3" placeholder="Your Name" name="name" id="email-contact" required="">
                                             <input type="email" value="" tabindex="3" placeholder="Your Email" name="email" id="email-contact" required="">
+                                            <input type="text" value="" tabindex="3" placeholder="Your Subject" name="subject" id="email-contact" required="">
                                            
-                                            <textarea class="type-input" tabindex="4" placeholder="your writing" name="message" id="message-contact" required=""></textarea> 
+                                            <textarea class="type-input" tabindex="4" placeholder="Message" name="message" id="message-contact" required=""></textarea> 
                                             <br/><br/><br/>
                                             <div class="submit-wrap">
-                                            <button class="flat-button bg-orange"><i class="fa fa-long-arrow-right"></i></button>
+                                            <button type="submit" class="flat-button bg-orange"><i class="fa fa-long-arrow-right"></i></button>
                                             </div>
                                            
                                         </form><!-- /.comment-form -->     
@@ -327,7 +229,7 @@
                 <div class="row">
                     <div class="container-bottom">
                         <div class="copyright"> 
-                            <p>Copyright © 2017. Powered by <span><a href="#">  </a></span>. All Rights Reserved.</p>
+                            <p>Copyright © 2017. Powered by Inrelt<span><a href="#">  </a></span>. All Rights Reserved.</p>
                         </div>
                     </div><!-- /.container-bottom -->
                 </div><!-- /.row -->

@@ -12,10 +12,9 @@ class Main extends CI_Controller{
     public function index(){
         $data['info'] = $this->model->info();
         $data['socmed'] = $this->model->socmed();
+        $data['aboutus'] = $this->model->aboutus();
         $this->template->load('tmp/frontend','homeView',$data);
     }
-
-    
     public function home(){
         $this->template->load('tmp/frontend','home');
     }
@@ -38,6 +37,15 @@ class Main extends CI_Controller{
     
     public function contact(){
         $this->template->load('tmp/frontend','contact');
+    }
+    //////homeview
+    public function newsletter()
+    {
+        $this->model->newsletter();
+    }
+    public function contactSend()
+    {
+        $this->model->contactSend();
     }
  
 }

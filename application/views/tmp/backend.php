@@ -233,6 +233,12 @@
 						</li>
 					<?php } ?>
 
+					<?php if (check_menu('newsletter')) {?>
+						<li>
+							<a  <?php echo active_url("newsletter");?> href="<?php echo base_url();?>newsletter" data-toggle="collapse" data-target="#"><i class="fa fa-newspaper-o mr-10"></i>Newsletter</a>
+						</li>
+					<?php } ?>
+
 					<?php if (check_menu('gallery')) {?>
 						<li>
 							<a  <?php echo active_url("gallery");?> href="<?php echo base_url();?>gallery" data-toggle="collapse" data-target="#"><i class="icon-picture mr-10"></i>Gallery</a>

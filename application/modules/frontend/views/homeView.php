@@ -98,7 +98,7 @@
                                     <div class="link"></div>
                                 </div>
 
-                                <a href="courses-single.html"><img src="<?php echo base_url(); ?>assets/frontend/images/index/course1.png" alt="Course1"></a>
+                                <a href="courses-single.html"><img src="<?php echo $res11->url_image;?>" alt="Course1"></a>
                             </div><!-- /.featured-post -->
 
                             <div class="course-content">
@@ -106,7 +106,7 @@
 
                                 <div class="price"><?php echo number_format($res11->price,2,',','.')?></div>    
                                 
-                                <ul class="course-meta review">
+                                <!-- <ul class="course-meta review">
                                     <li class="review-stars">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
@@ -115,7 +115,7 @@
                                         <i class="fa fa-star-o"></i>
                                     </li>
 
-                                </ul>
+                                </ul> -->
                             </div><!-- /.course-content -->
                         </div>
                     <?php endforeach;?>
@@ -124,14 +124,14 @@
                 </div>
             </div>
 
-            <section class="flat-row pad-top-96 pad-bottom-100">
     	    <div class="container">
                     <div class="flat-title-section">
-                        <h1 class="title">CyberLAB Teacher</h1>                
+                        <h1 class="title">CyberLAB Newest Teacher</h1>                
                     </div>
     	    	<div class="row teacher">
                     <?php
-                        $this->db->order_by("id_teacher","ASC");
+                        $this->db->order_by("id_teacher","DESC");
+                        $this->db->limit(4);
                         $quer = $this->db->get("tbl_teacher");
                         $result = $quer->result();
                         foreach($result as $res11):
@@ -178,28 +178,6 @@
                     <?php endforeach;?>
                 </div><!-- / .row -->
     	    </div><!-- / .container -->
-        </section>
-
-            <div class="flat-row join-us parallax parallax1 overlay bg-222">
-                <div class="overlay bg-222">
-                    <div class="container">
-                        <div class="row">
-
-                            <div class="counter-content">
-                                <span class="counter-prefix">Join</span>
-                                <div class="numb-counter">
-                                    <div class="numb-count" data-to="2912093" data-speed="1000" data-waypoint-active="yes">0</div>
-                                </div>          
-                                <span class="counter-suffix">people</span>
-                            </div>
-
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud</p>
-
-                            <a href="contact.html" class="flat-button">JOIN NOW</a>
-                        </div><!-- /.row -->
-                    </div><!-- /.container -->
-                </div>
-            </div>
 
               <div class = " flat-row lastest-new">
                 <div class="container">
@@ -237,7 +215,7 @@
 
                             <div class="content-post">
                                 <h2 class="title-post">
-                                    <a href="flat-information.html"><?php echo $res11->title_blog;?></a>
+                                    <a href="<?php echo base_url('news/read/').$res11->id_blog;?>"><?php echo $res11->title_blog;?></a>
                                 </h2>
 
                                 <div class="entry-content">
@@ -258,105 +236,55 @@
                 </div>
             </div><!-- /.latest-new -->
 
-            <section class="flat-row partners">
-                <div class="container">
-                    <ul class="partners-slider">
-                        <li>
-                            <img alt="owlcarousel-item-img" src="<?php echo base_url(); ?>assets/frontend/images/clients/Logo-01.png"/>
-                        </li>
-                        <li>
-                            <img alt="owlcarousel-item-img" src="<?php echo base_url(); ?>assets/frontend/images/clients/Logo-02.png"/>
-                        </li>
-                        <li>
-                            <img alt="owlcarousel-item-img" src="<?php echo base_url(); ?>assets/frontend/images/clients/Logo-03.png"/>
-                        </li>
-                        <li>
-                            <img alt="owlcarousel-item-img" src="<?php echo base_url(); ?>assets/frontend/images/clients/Logo-04.png"/>
-                        </li>
-                        <li>
-                            <img alt="owlcarousel-item-img" src="<?php echo base_url(); ?>assets/frontend/images/clients/Logo-05.png"/>
-                        </li>
-                        <li>
-                            <img alt="owlcarousel-item-img" src="<?php echo base_url(); ?>assets/frontend/images/clients/Logo-06.png"/>
-                        </li>
-                    </ul>
-                </div>
-            </section>
-
             <section class="flat-row testimonial">
                 <div class="container">
                     <div class="testimonial-slider">
-                        <div class="testimonial">
-                            <div class="testimonial-content">
-                                <blockquote>
-                                    You don't need a whole ecommerce system to sell your online courses. Paypal, Stripe payment methods integration can help you sell your courses out of the box. In the case you wanna use        WooCommerce, this awesome WordPress LMS Plugin. 
-                                </blockquote>
-                            </div>
-                            <div class="testimonial-meta">
-                                <div class="testimonial-author">
-                                    <strong class="author-name">Donald Simpson</strong>
-                                    <div class="author-info">Founder & CEO, Arcade Systems</div>
-                                </div>
-                            </div>
-                        </div>
+                        
+                    <?php
+                        $this->db->order_by("id_student","DESC");
+                        $this->db->limit(4);
+                        $queryBlog = $this->db->query("SELECT * FROM tbl_student");
+                        $result = $queryBlog->result();
+                        foreach($result as $res11):
+                    ?>
 
                         <div class="testimonial">
                             <div class="testimonial-content">
                                 <blockquote>
-                                    You don't need a whole ecommerce system to sell your online courses. Paypal, Stripe payment methods integration can help you sell your courses out of the box. In the case you wanna use        WooCommerce, this awesome WordPress LMS Plugin. 
+                                    <?php echo $res11->testimonials;?>  
                                 </blockquote>
                             </div>
                             <div class="testimonial-meta">
                                 <div class="testimonial-author">
-                                    <strong class="author-name">Donald Simpson</strong>
-                                    <div class="author-info">Founder & CEO, Arcade Systems</div>
+                                    <strong class="author-name"><?php echo $res11->name;?></strong>
+                                    <div class="author-info">Insterestng To <?php echo $res11->insteresting_to;?></div>
                                 </div>
                             </div>
                         </div>
+                        
 
-                        <div class="testimonial">
-                            <div class="testimonial-content">
-                                <blockquote>
-                                    You don't need a whole ecommerce system to sell your online courses. Paypal, Stripe payment methods integration can help you sell your courses out of the box. In the case you wanna use        WooCommerce, this awesome WordPress LMS Plugin. 
-                                </blockquote>
-                            </div>
-                            <div class="testimonial-meta">
-                                <div class="testimonial-author">
-                                    <strong class="author-name">Donald Simpson</strong>
-                                    <div class="author-info">Founder & CEO, Arcade Systems</div>
-                                </div>
-                            </div>
-                        </div>
+                        <?php 
+                    endforeach;
+                    ?> 
+
                     </div>                
                 </div>
             </section>
 
             <section class="flat-row news-letter">
                 <div class="container">
-                    <div class="have-question">                       
-                        <h2 class="">Have any question for us?</h2>
-
-                        <p class="flat-lh-28">
-                            Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum.
-                            Mirum est notare quam littera gothica, quam nunc putamus parum
-                        </p> 
-
-                        <div class="flat-button-container">
-                            <a class="read-more" href="#">Go to QAs page</a>
-                        </div> 
-                    </div>
 
                     <div class="news-letter-form">
                         <div class="widget-mailchimb">
                             <h1 class="widget-title">NEWSLETTER</h1>
                             <p>Subscribe now and receive weekly newsletter with educational materials, new courses, interesting posts, popular books and much more!</p>
-                            <form method="post" action="#" id="subscribe-form" data-mailchimp="true">
+                            <?php echo form_open('frontend/main/newsletter',"method='post'")?>
                                     <div id="subscribe-content">
                                         <div class="input-wrap email">
                                             <input type="text" id="subscribe-email" name="subscribe-email" placeholder="Your Email Here">
                                         </div>
                                         <div class="button-wrap">
-                                            <button type="button" id="subscribe-button" class="subscribe-button" title="Subscribe now"> SUBSCRIBE </button>
+                                            <button type="submit" id="subscribe-button" class="subscribe-button" title="Subscribe now"> SUBSCRIBE </button>
                                         </div>
                                     </div>
                                     <div id="subscribe-msg"></div>
