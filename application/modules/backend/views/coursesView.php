@@ -22,7 +22,6 @@
                                     <th width="150px">id</th>
                                     <th width="150px">Guru</th>
                                     <th width="100px">Kursus</th>
-                                    <th width="90px">Pelajaran</th>
                                     <th width="50px">Materi</th>
                                     <th width="230px">Penjelasan</th>
                                     <th width="230px">Harga</th>
@@ -58,12 +57,6 @@
 					<div class="form-group">
 						<label for="recipient-name" class="control-label mb-10">Guru </label>
 						<select class="form-control"  name="id_teacher" id="id_teacher" required="">
-							<option value="" ></option>
-						</select>
-					</div>
-					<div class="form-group">
-						<label for="recipient-name" class="control-label mb-10">Pelajaran </label>
-						<select class="form-control"  name="id_lesson" id="id_lesson" required="">
 							<option value="" ></option>
 						</select>
 					</div>
@@ -120,6 +113,27 @@
 	</div>
 </div>
 
+<!-- Modal -->
+<div id="pelajaranModel" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Pelajaran</h4>
+      </div>
+      <div class="modal-body" id="pelajaranModalBody">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		</div>
+    </div>
+
+  </div>
+</div>
+
 <script src="<?php echo base_url()?>assets/backend/vendors/ckeditor/ckeditor.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -139,7 +153,7 @@
 	        //Set column definition initialisation properties.
     	    "columnDefs": [
         		{ 
-            		"targets": [ 0,1,2,3,4,5,6,7,8], //first column / numbering column
+            		"targets": [ 0,1,2,3,4,5,6,7], //first column / numbering column
             		"orderable": false, //set not orderable
         		},
        	 	],
@@ -159,8 +173,7 @@
 
         $(document).on("click","#edit_pengguna",function(){
 			var currentRow = $(this).closest("tr");
-            var id_material = currentRow.find("td:eq(5)").text();
-            var id_lesson =currentRow.find("td:eq(4)").text();
+            var id_material = currentRow.find("td:eq(4)").text();
             var id_teacher =currentRow.find("td:eq(2)").text();
             var content_courses = $.trim($(this).attr("content_courses"));
             var price = $.trim($(this).attr("price"));
@@ -169,7 +182,6 @@
 
 			$("#select2-id_material-container").text(id_material);
 			$("#select2-id_teacher-container").text(id_teacher);
-			$("#select2-id_lesson-container").text(id_lesson);
 			CKEDITOR.instances['content_courses'].setData(content_courses);
             $("#price").val(price);
             $("#title_courses").val(title_courses);
@@ -273,33 +285,8 @@
 				});
 			}
 		});
-
-		$("#id_lesson").select2({
-		    minimumInputLength: 3,
-		    minimumResultsForSearch: 10,
-		    ajax: {
-				cache: true,
-		        url: "<?php echo base_url();?>backend/courses/lesson_list",
-		        dataType: "json",
-		        type: "GET",
-		        data: function (params) {
-
-		            var queryParameters = {
-		                term: params.term
-		            }
-		            return queryParameters;
-		        },
-		        processResults: function (data) {
-		            return {
-		                results: $.map(data, function (item) {
-		                    return {
-		                        text: item.itemName,
-		                        id: item.id
-		                    }
-		                })
-		            };
-		        }
-		    }
+		$(document).on("click","#tambahPelajaranButton",function(){
+			$('#tambahpelajaranModal').modal('show');
 		});
 
 		$("#id_material").select2({
@@ -356,7 +343,42 @@
 		        }
 		    }
 		});
+		$(document).on("click","#pelajaranCourses",function(){
+			var id_courses = $.trim($(this).attr("id_courses"));
+			$('#pelajaranModalBody').load('<?php echo base_url()?>/backend/courses/pelajaran/'+id_courses);
+			$('#pelajaranModel').modal('show');
+		});
+		$(document).on("click",".hapusPelajaranModal",function(){
+			var id_courses = $.trim($(this).attr("id_courses"));
+			var id_lesson = $.trim($(this).attr("id_lesson"));
+			var c = confirm("Yakin hapus data ini?");
 
+			if(c){
+				$.ajax({
+					type:"POST",
+					error: function(){
+						alert('Error!');
+					},
+					data:"id_courses="+id_courses+"&id_lesson="+id_lesson,
+					url:"<?php echo base_url();?>backend/courses/deletePelajaran",
+					dataType:"json",
+					beforeSend: function(){
+					$("#loading").show();
+					},
+					success: function(data){
+						if(data.error=='1'){
+							alert(data.message);
+							$("#loading").hide();
+						}else{
+							pengguna.ajax.reload();
+							$("#close").click();
+							$("#loading").hide();
+						}
+					}
+				});
+			}
+			window.location = window.location.href;
+		});
 	});
 </script>
 

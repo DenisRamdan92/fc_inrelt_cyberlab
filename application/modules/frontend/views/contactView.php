@@ -24,12 +24,11 @@
                         <div class="contact-content">
                             <div class="contact-address">
                                 <div class="style1">                                    
-                                   <img src="images/icon/c1.png" alt="image">
+                                   <img src="<?php echo base_url()?>assets/frontend/images/icon/c1.png" alt="image">
                                 </div> 
                                 <div class="details">
                                     <h5>Our Location</h5>
-                                    <p>350 Fifth Avenue, 34th floor New York</p>
-                                    <p>NY 10118-3299 USA</p>
+                                    <p><?php echo $info['addreess']?></p>
                                 </div>
                             </div>
                         </div>
@@ -39,12 +38,11 @@
                         <div class="contact-content">
                             <div class="contact-address">
                                 <div class="style1">
-                                    <img src="images/icon/c2.png" alt="image">
+                                    <img src="<?php echo base_url()?>assets/frontend/images/icon/c2.png" alt="image">
                                 </div>
                                 <div class="details">
                                     <h5>Contact us Anytime</h5>
-                                    <p>Mobile: (+1) 800 555 888 </p>
-                                    <p>Fax: (+1) 800 666 999</p>
+                                    <p><?php echo $info['phone']?></p>
                                 </div>
                             </div>
                         </div>
@@ -54,12 +52,11 @@
                         <div class="contact-content">
                             <div class="contact-address">
                                 <div class="style1">
-                                    <img src="images/icon/c3.png" alt="image">
+                                    <img src="<?php echo base_url()?>assets/frontend/images/icon/c3.png" alt="image">
                                 </div>
                                 <div class="details">
                                     <h5>Write Some Words</h5>
-                                    <p>Support24/7@domain.com </p>
-                                    <p>Info@domain.com</p>
+                                    <p><?php echo $info['email']?> </p>
                                 </div>
                             </div>
                         </div>
@@ -72,11 +69,11 @@
 
                 <div id="respond" class="comment-respond contact style2">
                     <h1 class="title comment-title">Leave a Message</h1>
-                    <form id="contactform" class="flat-contact-form style2 bg-dark height-small" method="post" action="./contact/contact-process.php">
+                    <?php echo form_open('frontend/main/contactSend','method="post" id="contactform" class="flat-contact-form style2 bg-dark height-small"')?>
                         <div class="field clearfix">      
                             <div class="wrap-type-input">                    
                                 <div class="input-wrap name">
-                                    <input type="text" value="" tabindex="1" placeholder="Name" name="name" id="name" required>
+                                    <input type="text" value="" tabindex="1" placeholder="Name" name="name" id="namet" required>
                                 </div>
                                 <div class="input-wrap email">
                                     <input type="email" value="" tabindex="2" placeholder="Email" name="email" id="email" required>
@@ -90,7 +87,7 @@
                             </div>
                         </div>
                         <div class="submit-wrap">
-                            <button class="flat-button bg-orange">Send Your Message</button>
+                            <button type="submit" class="flat-button bg-orange">Send Your Message</button>
                         </div>
                     </form><!-- /.comment-form -->                     
                 </div><!-- /#respond -->
@@ -101,7 +98,7 @@
         <section class="row-map">
             <div class="container-fluid">
                 <div class="row">
-                    <div id="map" style="width: 100%; height: 559px; "></div> 
+                    <iframe src="<?php echo $info['maps_url']?>" frameborder="0" id="map" style="width: 100%; height: 559px; "></iframe>
                 </div>
             </div><!-- /.container -->
         </section>

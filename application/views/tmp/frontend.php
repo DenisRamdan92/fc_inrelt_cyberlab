@@ -34,6 +34,7 @@
     <link href="<?php echo base_url();?>assets/frontend/icon/apple-touch-icon-57-precomposed.png" rel="apple-touch-icon-precomposed" sizes="57x57">
     <link href="<?php echo base_url();?>assets/frontend/images/icon_cyberlab.png" rel="shortcut icon">
 
+    <script type="text/javascript" src="<?php echo base_url();?>assets/frontend/javascript/jquery.min.js"></script>
     <!--[if lt IE 9]>
         <script src="javascript/html5shiv.js"></script>
         <script src="javascript/respond.min.js"></script>
@@ -66,12 +67,14 @@
     				<div class="row">
     					<div class="col-md-12">
     						<div class="text-information">
-                                <p>Welcome to <?php echo $info['title_web']?></p>
+
+                                <p><i class="color:blue;">Welcome to</i> <i style="color:orange"><?php echo $info['title_web']?></i>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $info['phone']?>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $info['email']?></p>
+                                
                             </div>
                             <div class="right-bar">
                                 <ul class="flat-socials">
-                                    <li class="gooogle-plus">
-                                        <?php echo anchor('frontend/login','<i class="fa fa-lock"></i> login');?>
+                                    <li class="google-plus">
+                                        <?php echo anchor('frontend/register','<i class="fa fa-lock"></i> login');?>
         							</li>
         						</ul>
                             </div>
@@ -105,7 +108,7 @@
                                 </li>
 
                                 <li>
-                                    <?php echo anchor('frontend/about','About');?>             
+                                    <?php echo anchor('frontend/aboutus','About');?>             
                                 </li>                               
 
                                 <li>
@@ -138,6 +141,37 @@
         <footer class="footer">  
             <div class="footer-widgets">   
                 <div class="container">
+                    <div class="row">
+
+                        <div class="col-md-3">
+                            <div class="widget widget_tweets clearfix">
+                                <h5 class="widget-title">QUICK LINK</h5>
+                                <?php echo $aboutus['content']?>
+                            </div><!-- /.widget-recent-tweets -->
+                        </div><!-- /.col-md-2 -->
+
+                        <div class="col-md-3">
+                            <div class="widget widget_tweets clearfix">
+                                <h5 class="widget-title">LATEST COURSES</h5>
+                                <?php echo $aboutus['content']?>
+                            </div><!-- /.widget-recent-tweets -->
+                        </div><!-- /.col-md-2 -->
+
+                        <div class="col-md-3">
+                            <div class="widget widget_tweets clearfix">
+                                <h5 class="widget-title">POPULAR COURSES</h5>
+                                <?php echo $aboutus['content']?>
+                            </div><!-- /.widget-recent-tweets -->
+                        </div><!-- /.col-md-2 -->
+
+                        <div class="col-md-3">
+                            <div class="widget widget_tweets clearfix">
+                                <h5 class="widget-title">LATEST COMMANT</h5>
+                                <?php echo $aboutus['content']?>
+                            </div><!-- /.widget-recent-tweets -->
+                        </div><!-- /.col-md-2 -->
+                    </div><!-- /.row -->
+                    <hr>
                     <div class="row">
                         <div class="col-md-4">  
                             <div class="widget widget-text">
@@ -174,7 +208,7 @@
                                             <button type="submit" class="flat-button bg-orange"><i class="fa fa-long-arrow-right"></i></button>
                                             </div>
                                            
-                                        </form><!-- /.comment-form -->     
+                                    </form><!-- /.comment-form -->     
                                     </div><!-- /.col-md-12 -->
                                 </div>
                             </div><!-- /.widget .widget-instagram -->
@@ -218,7 +252,6 @@
 
 
         <!-- Javascript -->
-    <script type="text/javascript" src="<?php echo base_url();?>assets/frontend/javascript/jquery.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url();?>assets/frontend/javascript/bootstrap.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url();?>assets/frontend/javascript/jquery.easing.js"></script> 
     <script type="text/javascript" src="<?php echo base_url();?>assets/frontend/javascript/owl.carousel.js"></script> 

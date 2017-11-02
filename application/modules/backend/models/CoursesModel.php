@@ -5,7 +5,7 @@ class CoursesModel extends CI_Model{
 	
 	var $id_member = "";
 	var $column_order = array(null, 'u.title_courses'); //set column field database for datatable orderable
-    var $column_search = array('u.title_courses','e.title_material','g.title_lesson','t.name'); //set column field database for datatable searchable 
+    var $column_search = array('u.title_courses','e.title_material','t.name'); //set column field database for datatable searchable 
     var $order = array('u.id_courses' => 'desc'); // default order
 
 	function __construct()
@@ -16,7 +16,6 @@ class CoursesModel extends CI_Model{
 	private function _get_datatables_query()
     {
 		$this->db->select("*");
-        $this->db->join("tbl_lesson g","g.id_lesson=u.id_lesson","left");
 		$this->db->join("tbl_material e","e.id_material=u.id_material","left");
         $this->db->join("tbl_teacher t","t.id_teacher=u.id_teacher","left");
 
@@ -74,7 +73,6 @@ class CoursesModel extends CI_Model{
  
     public function count_all()
     {
-		$this->db->join("tbl_lesson g","g.id_lesson=u.id_lesson","left");
         $this->db->join("tbl_material e","e.id_material=u.id_material","left");
         $this->db->join("tbl_teacher t","t.id_teacher=u.id_teacher","left");
 
@@ -166,6 +164,39 @@ class CoursesModel extends CI_Model{
 		}else{
 			//echo json_encode(array("error"=>0));
 		}
+	}
+	public function pelajaran($id)
+	{
+		$query = $this->db->query("select * from tbl_dtl_lesson_courses a LEFT JOIN tbl_lesson b ON a.id_lesson = b.id_lesson where id_courses='$id'");
+		return $query->result_array();
+	}
+	public function simpanPelajaran()
+	{
+		$id_courses = $this->input->post('id_coursesModal');
+		$id_lesson = $this->input->post('id_lesson');
+		$query = $this->db->query("SELECT * FROM tbl_dtl_lesson_courses WHERE id_lesson = '$id_lesson' AND id_courses='$id_courses'");
+		$jml = $query->num_rows();
+		$data = array(
+			'id_lesson' => $id_lesson,
+			'id_courses' => $id_courses
+		);
+		if($jml < 1)
+		{
+
+			$this->db->insert('tbl_dtl_lesson_courses',$data);
+		
+		}
+		
+		redirect('courses');
+		
+	}
+
+	public function deletePelajaran()
+	{
+		$id_courses = $this->input->post('id_courses');
+		$id_lesson = $this->input->post('id_lesson');
+		$this->db->query("DELETE FROM tbl_dtl_lesson_courses WHERE id_lesson='$id_lesson' AND id_courses='$id_courses'");
+		echo 1;
 	}
 
 }

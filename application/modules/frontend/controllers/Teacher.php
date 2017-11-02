@@ -1,13 +1,13 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Courses extends CI_Controller{
+class Teacher extends CI_Controller{
     
     function __construct() {
         parent::__construct();
         $this->load->library('Template');
+        $this->load->model('TeacherModel','model');
         $this->load->model('MainModel');
-        $this->load->model('CoursesModel','model');
     }
     
     public function index(){
@@ -16,9 +16,9 @@ class Courses extends CI_Controller{
         $data['aboutus'] = $this->MainModel->aboutus();
 
         $config = array();
-        $config["base_url"] = base_url() . "frontend/courses/index";
+        $config["base_url"] = base_url() . "frontend/teacher/index";
         $config["total_rows"] = $this->model->record_count();
-        $config["per_page"] = 5;
+        $config["per_page"] = 20;
         $config["uri_segment"] = 4;
 
 		$config["next_tag_open"] = "<li>";
@@ -51,7 +51,7 @@ class Courses extends CI_Controller{
         $data["results"] = $this->model->fetch_courses($config["per_page"], $page);
         $data["links"] = $this->pagination->create_links();
 
-        $this->template->load('tmp/frontend','coursesView',$data);
+        $this->template->load('tmp/frontend','teacherView',$data);
     }
  
 }

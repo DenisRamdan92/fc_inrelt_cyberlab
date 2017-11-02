@@ -98,11 +98,11 @@
                                     <div class="link"></div>
                                 </div>
 
-                                <a href="courses-single.html"><img src="<?php echo $res11->url_image;?>" alt="Course1"></a>
+                                <a href="<?php echo base_url('courses/read/').$res11->id_courses;?>"><img src="<?php echo $res11->url_image;?>" alt="Course1"></a>
                             </div><!-- /.featured-post -->
 
                             <div class="course-content">
-                                <h4><a href="courses-single.html"><?php echo $res11->title_courses;?></a> </h4>
+                                <h4><a href="<?php echo base_url('courses/read/').$res11->id_courses;?>"><?php echo $res11->title_courses;?></a> </h4>
 
                                 <div class="price"><?php echo number_format($res11->price,2,',','.')?></div>    
                                 
@@ -129,6 +129,7 @@
                         <h1 class="title">CyberLAB Newest Teacher</h1>                
                     </div>
     	    	<div class="row teacher">
+                    
                     <?php
                         $this->db->order_by("id_teacher","DESC");
                         $this->db->limit(4);
