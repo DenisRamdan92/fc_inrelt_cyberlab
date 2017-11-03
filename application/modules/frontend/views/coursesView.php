@@ -100,7 +100,7 @@
                             </li>
                         </ul> 
 
-                            <a class="flat-button orange" href="<?php echo base_url('courses/read/').$r->id_courses;?>">SEE MORE</a>
+                            <a class="~" href="<?php echo base_url('courses/read/').$r->id_courses;?>">SEE MORE</a>
                         </div><!-- /.course-content -->
                 </div>
 

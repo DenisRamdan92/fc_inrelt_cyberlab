@@ -14,5 +14,13 @@ if ( ! function_exists('Active_url'))
 		if($segment==$slug){
 			echo "class='active'";
 		}
+		}
+		function active_url1($slug = '', $target = 1)
+    {
+		$CI =& get_instance();
+		$segment = $CI->uri->segment($target);
+		if($segment==$slug){
+			echo "class='home'";
+		}
     }
 }

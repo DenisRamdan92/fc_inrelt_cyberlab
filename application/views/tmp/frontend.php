@@ -98,32 +98,33 @@
                             <span></span>
                         </div><!-- //mobile menu button -->
                         <nav id="mainnav" class="mainnav">
-                            <ul class="menu"> 
-                                <li class="home">
-                                    <?php echo anchor('frontend/main','Home');?>
-                                </li>
-                                
-                                <li>
-                                    <?php echo anchor('frontend/courses','Courses');?>
+                            <ul class="menu">
+
+                                <li <?php echo active_url1("main",2);?>>
+                                    <a href="<?php echo base_url();?>frontend/main">Home</a>
                                 </li>
 
-                                <li>
+                                <li <?php echo active_url1("courses",2);?>>
+                                    <a href="<?php echo base_url();?>frontend/courses">Courses</a>
+                                </li>
+
+                                <li <?php echo active_url1("aboutus",2);?>>
                                     <?php echo anchor('frontend/aboutus','About');?>             
                                 </li>                               
 
-                                <li>
+                                <li <?php echo active_url1("teacher",2);?>>
                                     <?php echo anchor('frontend/teacher','Teacher');?>
                                 </li>
 
-                                <li>
+                                <li <?php echo active_url1("blog",2);?>>
                                     <?php echo anchor('frontend/blog','Blog');?>
                                 </li>
 
-                                <li>
+                                <li <?php echo active_url1("gallery",2);?>>
                                     <?php echo anchor('frontend/gallery','Gallery');?>
                                 </li>
 
-                                <li>
+                                <li <?php echo active_url1("contact",2);?>>
                                     <?php echo anchor('frontend/contact','Contact');?>
                                 </li>
 
@@ -146,28 +147,95 @@
                         <div class="col-md-3">
                             <div class="widget widget_tweets clearfix">
                                 <h5 class="widget-title">QUICK LINK</h5>
-                                <?php echo $aboutus['content']?>
+                                <div class="">
+                                    <ul>
+                                        <li><span class="fa fa-book"></span> <a href="#">All Courses</a><hr></li>
+                                        <li><span class="fa fa-users"></span> <a href="#">Teacher</a><hr></li>
+                                        <li><span class="fa fa-lock"></span> <a href="#">Privacy Policy</a><hr></li> 
+                                        <li><span class="fa fa-globe"></span> <a href="#">Term & Conditions</a><hr></li>  
+                                    </ul> 
+                                </div><!-- /.widget --> 
                             </div><!-- /.widget-recent-tweets -->
                         </div><!-- /.col-md-2 -->
 
                         <div class="col-md-3">
                             <div class="widget widget_tweets clearfix">
                                 <h5 class="widget-title">LATEST COURSES</h5>
-                                <?php echo $aboutus['content']?>
+                                <div class="">
+                                    <ul>
+                                        <?php
+
+                                            $quer = $this->db->query("select * from tbl_courses a LEFT JOIN tbl_teacher b ON a.id_teacher = b.id_teacher order by id_courses DESC limit 3");
+                                            $result = $quer->result();
+                                            foreach($result as $res11):
+                                        ?>
+                                            <li>
+                                                
+                                                <span class="fa fa-globe"></span> 
+                                                <a href="#"><?php echo $res11->title_courses?></a>
+                                                <br>
+                                                By <?php echo $res11->name?>
+                                                <hr>
+                                            
+                                            </li>
+
+                                        <?php endforeach;?>
+                                    </ul>
+                                </div><!-- /.widget --> 
                             </div><!-- /.widget-recent-tweets -->
                         </div><!-- /.col-md-2 -->
 
                         <div class="col-md-3">
                             <div class="widget widget_tweets clearfix">
                                 <h5 class="widget-title">POPULAR COURSES</h5>
-                                <?php echo $aboutus['content']?>
+                                <div class="">
+                                    <ul>
+                                        <?php
+
+                                            $quer = $this->db->query("select * from tbl_courses a LEFT JOIN tbl_teacher b ON a.id_teacher = b.id_teacher order by id_courses DESC limit 3");
+                                            $result = $quer->result();
+                                            foreach($result as $res11):
+                                        ?>
+                                            <li>
+                                                
+                                                <span class="fa fa-globe"></span> 
+                                                <a href="#"><?php echo $res11->title_courses?></a>
+                                                <br>
+                                                By <?php echo $res11->name?>
+                                                <hr>
+                                            
+                                            </li>
+
+                                        <?php endforeach;?>
+                                    </ul>
+                                </div><!-- /.widget --> 
                             </div><!-- /.widget-recent-tweets -->
                         </div><!-- /.col-md-2 -->
 
                         <div class="col-md-3">
                             <div class="widget widget_tweets clearfix">
                                 <h5 class="widget-title">LATEST COMMANT</h5>
-                                <?php echo $aboutus['content']?>
+                                <div class="">
+                                    <ul>
+                                        <?php
+
+                                            $quer = $this->db->query("select * from tbl_courses a LEFT JOIN tbl_teacher b ON a.id_teacher = b.id_teacher order by id_courses DESC limit 3");
+                                            $result = $quer->result();
+                                            foreach($result as $res11):
+                                        ?>
+                                            <li>
+                                                
+                                                <span class="fa fa-globe"></span> 
+                                                <a href="#"><?php echo $res11->title_courses?></a>
+                                                <br>
+                                                By <?php echo $res11->name?>
+                                                <hr>
+                                            
+                                            </li>
+
+                                        <?php endforeach;?>
+                                    </ul>
+                                </div><!-- /.widget --> 
                             </div><!-- /.widget-recent-tweets -->
                         </div><!-- /.col-md-2 -->
                     </div><!-- /.row -->

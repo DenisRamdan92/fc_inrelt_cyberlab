@@ -87,7 +87,7 @@
                     <div class="flat-course-grid button-right">
 
                     <?php
-                        $this->db->order_by("id_courses","ASC");
+                        $this->db->order_by("id_courses","DESC");
                         $quer = $this->db->get("tbl_courses");
                         $result = $quer->result();
                         foreach($result as $res11):
@@ -190,6 +190,7 @@
 
                     <?php
                         $this->db->order_by("id_blog","ASC");
+                        $this->db->limit(3);
                         $quer = $this->db->query("select a.*,title_tag from tbl_blog a LEFT JOIN tbl_tag b ON a.id_tag = b.id_tag");
                         $result = $quer->result();
                         foreach($result as $res11):

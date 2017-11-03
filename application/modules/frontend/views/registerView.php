@@ -25,12 +25,21 @@
                         <div class="col-sm-6">
                             <h1>Log In</h1>
                             <h3>Already a Member? Log in here.</h3>
-                            <form role="form" name="login-form" id="login-form">
-
+                            <?php echo form_open('frontend/register/logincek','medhod="post"')?>
+                                <?php if ($this->session->flashdata('msg_error')) { ?>
+                                    <div class="alert alert-danger margin-bottom-30">
+                                        <button type="button" class="close" data-dismiss="alert">
+                                            <span aria-hidden="true">×</span>
+                                            <span class="sr-only">Hilangkan</span>
+                                        </button>
+                                        <strong>Perhatian !</strong>   <?php echo $this->session->flashdata('msg_error'); ?> 
+                                    </div>
+                                <?php } ?>
+                                
                                 <div class="form-group" id="login-login-group">
                                     <label for="login-input-login">Login</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="login-input-login" placeholder="Username or email">
+                                        <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
                                         <div class="input-group-addon"><i class="fa fa-user"></i></div>
                                     </div>
                                  </div>
@@ -38,7 +47,7 @@
                                 <div class="form-group" id="login-password-group">
                                     <label for="login-input-password">Password</label>
                                     <div class="input-group">
-                                        <input type="password" class="form-control" id="login-input-password" placeholder="••••••••">
+                                        <input type="password" class="form-control" id="password" name="password" placeholder="••••••••" required>
                                         <div class="input-group-addon"><i class="fa fa-lock"></i></div>
                                     </div>
                                 </div>
