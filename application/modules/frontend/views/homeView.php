@@ -20,7 +20,7 @@
                                 <?php echo anchor('frontend/register','SIGN UP COURSES');?>
                             </div>
                              <div class="tp-caption sfr flat-button-slider" data-x="601" data-y="440" data-speed="1000" data-start="2500" data-easing="Power3.easeInOut">
-                                <?php echo anchor('frontend/login','LOG IN COURSES');?>
+                                <?php echo anchor('frontend/register','LOG IN COURSES');?>
                              </div>                    
                         </li>
                     <?php endforeach;?>
@@ -88,6 +88,7 @@
 
                     <?php
                         $this->db->order_by("id_courses","DESC");
+                        $this->db->limit(20);
                         $quer = $this->db->get("tbl_courses");
                         $result = $quer->result();
                         foreach($result as $res11):
@@ -98,24 +99,85 @@
                                     <div class="link"></div>
                                 </div>
 
-                                <a href="<?php echo base_url('courses/read/').$res11->id_courses;?>"><img src="<?php echo $res11->url_image;?>" alt="Course1"></a>
+                                <a href="<?php echo base_url('frontend/courses/read/').$res11->id_courses;?>"><img src="<?php echo $res11->url_image;?>" alt="Course1"></a>
                             </div><!-- /.featured-post -->
 
                             <div class="course-content">
-                                <h4><a href="<?php echo base_url('courses/read/').$res11->id_courses;?>"><?php echo $res11->title_courses;?></a> </h4>
+                                <h4><a href="<?php echo base_url('frontend/courses/read/').$res11->id_courses;?>"><?php echo $res11->title_courses;?></a> </h4>
 
-                                <div class="price"><?php echo number_format($res11->price,2,',','.')?></div>    
+                                <div class="price">
                                 
-                                <!-- <ul class="course-meta review">
+                                <?php 
+
+                                if ($res11->price == null)
+                                {
+                                    echo "Free";
+                                } else {
+                                    echo "Rp.".number_format($res11->price,2,',','.');
+                                }
+
+                                ?>
+                                
+                                </div>    
+                                
+                                <?php
+                                    $hasil = 0;
+                                    $querySum = $this->db->query("SELECT sum(views) as jumlah_viewer FROM `tbl_courses`");
+                                    $resultSum = $querySum->row_array();
+                                    $jumlah = $resultSum['jumlah_viewer'];
+                                    $hasil = ($res11->views * 100)/$jumlah;
+                                if ($hasil <= 20){ 
+                                ?>
+                                    <ul class="course-meta review">
+                                        <li class="review-stars">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                        </li>
+                                    </ul>
+                                <?php } elseif ($hasil > 20 && $hasil <=40) { ?>
+                                    <ul class="course-meta review">
+                                        <li class="review-stars">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                        </li>
+                                    </ul>
+                                <?php } elseif ($hasil > 40 && $hasil <=60) { ?>
+                                <ul class="course-meta review">
                                     <li class="review-stars">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-half"></i>
+                                        <i class="fa fa-star-o"></i>
                                         <i class="fa fa-star-o"></i>
                                     </li>
-
-                                </ul> -->
+                                </ul>
+                                <?php } elseif ($hasil > 60 && $hasil <=80) { ?>
+                                <ul class="course-meta review">
+                                    <li class="review-stars">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                    </li>
+                                </ul>
+                                <?php } elseif ($hasil > 80) { ?>
+                                <ul class="course-meta review">
+                                    <li class="review-stars">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </li>
+                                </ul>
+                                <?php } ?>
                             </div><!-- /.course-content -->
                         </div>
                     <?php endforeach;?>
@@ -145,7 +207,7 @@
     		                    <img src="<?php echo $res11->url_foto;?>"/>
     		                </div>
     		                <div class="content">                               
-    		                    <h4 class="name"><?php echo $res11->name;?></h4>
+    		                    <h4 class="name"><a href="<?php echo base_url('frontend/teacher/detail/').$res11->id_teacher;?>"><?php echo $res11->name;?></a></h4>
     		                    <ul class="flat-socials">
     		                        <li class="facebook">
     		                            <a href="<?php echo $res11->facebook;?>"><i class="fa fa-facebook"></i></a>
@@ -217,7 +279,7 @@
 
                             <div class="content-post">
                                 <h2 class="title-post">
-                                    <a href="<?php echo base_url('news/read/').$res11->id_blog;?>"><?php echo $res11->title_blog;?></a>
+                                    <a href="<?php echo base_url('frontend/blog/read/').$res11->id_blog;?>"><?php echo $res11->title_blog;?></a>
                                 </h2>
 
                                 <div class="entry-content">
@@ -259,7 +321,7 @@
                             <div class="testimonial-meta">
                                 <div class="testimonial-author">
                                     <strong class="author-name"><?php echo $res11->name;?></strong>
-                                    <div class="author-info">Insterestng To <?php echo $res11->insteresting_to;?></div>
+                                    <div class="author-info">Insteresting To <?php echo $res11->insteresting_to;?></div>
                                 </div>
                             </div>
                         </div>

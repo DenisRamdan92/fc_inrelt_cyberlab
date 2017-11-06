@@ -53,6 +53,14 @@ class Teacher extends CI_Controller{
 
         $this->template->load('tmp/frontend','teacherView',$data);
     }
+    public function detail($id)
+    {
+        $data['info'] = $this->MainModel->info();
+        $data['socmed'] = $this->MainModel->socmed();
+        $data['aboutus'] = $this->MainModel->aboutus();
+        $data['teacher'] = $this->model->teacher($id);
+        $this->template->load('tmp/frontend','teacher/teacherDetail',$data);
+    }
  
 }
 ?>

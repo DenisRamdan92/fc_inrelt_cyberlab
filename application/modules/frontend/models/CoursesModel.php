@@ -23,6 +23,20 @@ class CoursesModel extends CI_Model
         }
         return false;
    } 
+   public function courses($id)
+   {
+       $query = $this->db->query("SELECT *, count(e.id_lesson) as jumlah_lesson FROM tbl_courses a left join tbl_teacher b on a.id_teacher = b.id_teacher left join tbl_material c on c.id_material = a.id_material left join tbl_dtl_lesson_courses d on a.id_courses = d.id_courses left join tbl_lesson e on d.id_lesson = e.id_lesson where a.id_courses = '$id' group by a.id_courses");
+       return $query->row_array();
+   }
+   public function addView($id)
+   {
+    $this->db->where('id_courses', $id);
+    $query = $this->db->get('tbl_courses');
+    $row = $query->row_array();
+    $viewsCourses = $row['views']+1;
+
+    $this->db->query("UPDATE tbl_courses SET views = '$viewsCourses' WHERE id_courses = '$id'");
+   }
 }
 
 ?>

@@ -53,6 +53,15 @@ class Courses extends CI_Controller{
 
         $this->template->load('tmp/frontend','coursesView',$data);
     }
+    public function read($id)
+    {
+        $data['info'] = $this->MainModel->info();
+        $data['socmed'] = $this->MainModel->socmed();
+        $data['aboutus'] = $this->MainModel->aboutus();
+        $data['courses'] = $this->model->courses($id);
+        $this->model->addView($id);
+        $this->template->load('tmp/frontend','courses/coursesSingle',$data);
+    }
  
 }
 ?>

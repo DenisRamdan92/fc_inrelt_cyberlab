@@ -23,6 +23,12 @@ class TeacherModel extends CI_Model
         }
         return false;
    }
+   public function teacher($id)
+   {
+        $this->db->where('id_teacher',$id);
+        $query = $this->db->get('tbl_teacher');
+        return $query->row_array();
+    }
 }
 
 ?>

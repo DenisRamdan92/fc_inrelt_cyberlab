@@ -27,17 +27,23 @@
             <div class="flat-post-ordering clearfix">
                 <div class="sort-views">
                     <label class="modern-select">
-                        <select name="select_category" class="orderby">
-                            <option value="menu_order" selected="selected">Select Category</option>
-                            <option value="Accessories">Accessories</option>
-                            <option value="mobile_app">Mobile App</option>
-                            <option value="fashion_design">Fashion Desin</option>
-                            <option value="web_design">Web Design</option>
+                        <select name="select_category" class="orderby" id="orderby">
+                            <option value="menu_order" selected="selected">Select Material</option>
+
+                                <?php
+                                    $quer = $this->db->query("select * from tbl_material");
+                                    $result = $quer->result();
+                                    foreach($result as $res11):
+                                ?>
+
+                            <option value="<?php echo $res11->id_material;?>"><?php echo $res11->title_material;?></option>
+
+                                <?php endforeach;?>
                         </select>
                     </label>
 
                     <label class="modern-select">
-                         <select name="select_category" class="orderby">
+                         <select name="select_category" class="orderby" id="orderby1">
                             <option value="menu_order" selected="selected">Sort by</option>
                             <option value="newest">Newest</option>
                             <option value="oldest">Oldest</option>
@@ -208,3 +214,11 @@
     </div><!-- /row -->
 </div><!-- /container -->
 </section><!-- /main-content -->
+<script>
+    $(document).ready(function(){
+        $(document).on('change','#orderby',function(){
+            var values = $(this).val();
+            alert(values);
+        });
+    });
+</script>

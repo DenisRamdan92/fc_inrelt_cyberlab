@@ -53,6 +53,19 @@ class Blog extends CI_Controller{
 
         $this->template->load('tmp/frontend','blogView',$data);
     }
+    public function read($id)
+    {
+        $data['info'] = $this->MainModel->info();
+        $data['socmed'] = $this->MainModel->socmed();
+        $data['aboutus'] = $this->MainModel->aboutus();
+        $data['blog'] = $this->model->blog($id);
+
+        $this->template->load('tmp/frontend','blog/blogSingle',$data);
+    }
+    public function commentSend($id)
+    {
+        $this->model->commentSend($id);
+    }
  
 }
 ?>
