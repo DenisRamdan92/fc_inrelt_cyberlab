@@ -124,7 +124,7 @@
                             <img src="<?php echo $res11->img_url;?>" width="100px;" class="img-responsive" alt="image">
                         </div>
                         <div class="text">
-                            <a href="#"><?php echo $res11->title_blog;?></a>
+                            <a href="<?php echo base_url('frontend/blog/read/').$res11->id_blog;?>"><?php echo $res11->title_blog;?></a>
                             <p><?php echo $res11->date_blog;?></p>
                         </div>
                     </li>

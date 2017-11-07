@@ -28,7 +28,7 @@
                 <div class="sort-views">
                     <label class="modern-select">
                         <select name="select_category" class="orderby" id="orderby">
-                            <option value="menu_order" selected="selected">Select Material</option>
+                            <option value="*" selected="selected">Select Material</option>
 
                                 <?php
                                     $quer = $this->db->query("select * from tbl_material");
@@ -36,7 +36,7 @@
                                     foreach($result as $res11):
                                 ?>
 
-                            <option value="<?php echo $res11->id_material;?>"><?php echo $res11->title_material;?></option>
+                                    <option value="<?php echo $res11->id_material;?>"><?php echo $res11->title_material;?></option>
 
                                 <?php endforeach;?>
                         </select>
@@ -52,7 +52,7 @@
                 </div>
             </div>
 
-            <div class="post-warp clearfix">
+            <div class="post-warp clearfix" id="coursesList">
             
                 <?php
                     foreach($results as $r):
@@ -219,6 +219,7 @@
         $(document).on('change','#orderby',function(){
             var values = $(this).val();
             alert(values);
+            $('#coursesList').load("<?php echo base_url()?>frontend/courses/coursesList/"+values);
         });
     });
 </script>
