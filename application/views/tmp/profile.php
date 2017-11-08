@@ -35,6 +35,7 @@
     <link href="<?php echo base_url();?>assets/frontend/images/icon_cyberlab.png" rel="shortcut icon">
 
     <script type="text/javascript" src="<?php echo base_url();?>assets/frontend/javascript/jquery.min.js"></script>
+    
     <!--[if lt IE 9]>
         <script src="javascript/html5shiv.js"></script>
         <script src="javascript/respond.min.js"></script>
@@ -106,15 +107,7 @@
                                 <li <?php echo active_url1("profile",3);?>>
                                     <?php echo anchor('frontend/profile/profile','Profile');?>
                                 </li>
-
-                                <li <?php echo active_url1("progress",3);?>>
-                                    <?php echo anchor('frontend/profile/progress','Progress');?>
-                                </li>
-
-                                <li <?php echo active_url1("score",3);?>>
-                                    <?php echo anchor('frontend/profile/score','Score');?>
-                                </li>
-
+                                
                                 <li <?php echo active_url1("info",3);?>>
                                     <?php echo anchor('frontend/profile/info','Info');?>
                                 </li>

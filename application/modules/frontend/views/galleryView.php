@@ -109,13 +109,15 @@
         <section class="flat-row pad-top-96 pad-bottom-100">
     	    <div class="container">
     			<ul class="portfolio-filter">
-    	            <li class="active"><a data-filter="*" href="#">ALL</a></li>
-    	            <li class=""><a data-filter=".a" href="#">A</a></li>
-    	            <li class=""><a data-filter=".b" href="#">B</a></li>
-    	            <li class=""><a data-filter=".c" href="#">C</a></li>
+                <?php
+                    $query = $this->db->get('tbl_gallery_category');
+                    $result = $query->result_array();
+                    foreach ($result as $r) { ?>
+                        <li><a data-filter="*" href="javascript:void[0]" id_detail="<?php echo $r['id_galeri_kategori']?>" class="flat-button orange kategoriList"><?php echo $r['kategori']?></a></li>
+                    <?php } ?>
     	        </ul>
     	    	
-    	    	<div class="row teacher">
+    	    	<div class="row teacher" id="galleryBody">
 
     		        <div class="flat-teacher-team-isotope button-right">
     		       		
@@ -176,5 +178,9 @@ $(document).ready(function(){
     $(document).on('click','.close',function(){
         $('#myModal').css('display','none');
     });
+    $(document).on('click','.kategoriList',function(){
+            var values = $.trim($(this).attr('id_detail'));
+            $('#galleryBody').load("<?php echo base_url()?>frontend/gallery/gallerySorting/"+values);
+        });
 });
 </script>

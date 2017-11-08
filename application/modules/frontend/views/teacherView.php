@@ -19,7 +19,7 @@
 
         <section class="flat-row pad-top-96 pad-bottom-100">
     	    <div class="container">
-    			<ul class="portfolio-filter">
+    			<!-- <ul class="portfolio-filter">
     	            <li class="active"><a data-filter="*" href="#">ALL</a></li>
     	            <li class=""><a data-filter=".a" href="#">A</a></li>
     	            <li class=""><a data-filter=".b" href="#">B</a></li>
@@ -45,7 +45,7 @@
     	            <li class=""><a data-filter=".x" href="#">X</a></li>
     	            <li class=""><a data-filter=".y" href="#">Y</a></li>
     	            <li class=""><a data-filter=".z" href="#">Z</a></li>
-    	        </ul>
+    	        </ul> -->
     	    	
     	    	<div class="row teacher">
 

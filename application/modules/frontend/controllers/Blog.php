@@ -18,7 +18,7 @@ class Blog extends CI_Controller{
         $config = array();
         $config["base_url"] = base_url() . "frontend/blog/index";
         $config["total_rows"] = $this->model->record_count();
-        $config["per_page"] = 5;
+        $config["per_page"] = 2;
         $config["uri_segment"] = 4;
 
 		$config["next_tag_open"] = "<li>";

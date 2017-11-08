@@ -86,7 +86,7 @@
                                 <img src="<?php echo $res11->url_foto;?>"/>
                             </div>
                             <div class="content">                               
-                                <h4 class="name"><?php echo $res11->name;?></h4>
+                                <h4 class="name"><a href="<?php echo base_url('frontend/teacher/detail/').$res11->id_teacher;?>"><?php echo $res11->name;?></a></h4>
                                 <ul class="flat-socials">
                                     <li class="facebook">
                                         <a href="<?php echo $res11->facebook;?>"><i class="fa fa-facebook"></i></a>

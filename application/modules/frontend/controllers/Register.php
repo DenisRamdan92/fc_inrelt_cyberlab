@@ -31,6 +31,10 @@ class Register extends CI_Controller{
         $this->session->sess_destroy();
         redirect('frontend/register');
     }
+    public function registeration()
+    {
+        $this->model->registration();
+    }
 
  
 }

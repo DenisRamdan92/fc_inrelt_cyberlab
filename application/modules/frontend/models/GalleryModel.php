@@ -23,6 +23,19 @@ class GalleryModel extends CI_Model
         }
         return false;
    }
+   public function fetch_courses1($limit, $start,$id) {
+    $this->db->where('id_galeri_kategori',$id);
+    $this->db->order_by("id_gallery","DESC");
+    $query = $this->db->get("tbl_gallery");
+
+    if ($query->num_rows() > 0) {
+        foreach ($query->result() as $row) {
+            $data[] = $row;
+        }
+        return $data;
+    }
+    return false;
+}
 }
 
 ?>

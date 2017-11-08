@@ -18,7 +18,7 @@ class Teacher extends CI_Controller{
         $config = array();
         $config["base_url"] = base_url() . "frontend/teacher/index";
         $config["total_rows"] = $this->model->record_count();
-        $config["per_page"] = 20;
+        $config["per_page"] = 4;
         $config["uri_segment"] = 4;
 
 		$config["next_tag_open"] = "<li>";

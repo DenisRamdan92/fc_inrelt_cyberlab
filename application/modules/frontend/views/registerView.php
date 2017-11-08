@@ -40,7 +40,7 @@
                                     <label for="login-input-login">Login</label>
                                     <div class="input-group">
                                         <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
-                                        <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                                        <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
                                     </div>
                                  </div>
                                 
@@ -66,24 +66,24 @@
                         <div class="col-sm-6">
                             <h1>Register</h1>
                             <h3>Do not have an account? Register here.</h3>
-                            <form role="form" name="register-form" id="register-form">
+                            <?php echo form_open('frontend/register/registeration','medhod="post"')?>
                                 
-                                <div class="form-group" id="register-login-group">
-                                <label for="register-input-login">Choose Your Login</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" id="register-input-login" placeholder="Username">
-                                        <div class="input-group-addon"><i class="fa fa-user"></i></div>
-                                    </div>
-                                </div>
-
                                 <div class="form-group" id="register-email-group">
-                                <label for="register-input-email">Email</label>
+                                <label for="register-input-email">Your Email</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="register-input-email" placeholder="john.doe@gmail.com">
+                                        <input type="text" class="form-control" name="email" id="register-input-email" placeholder="john.doe@gmail.com" required>
                                         <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
                                     </div>
                                 </div>
-                                
+
+                                <div class="form-group" id="register-login-group">
+                                <label for="register-input-login">Password</label>
+                                    <div class="input-group">
+                                        <input type="password" class="form-control" name="password" id="register-input-login" placeholder="Password" required>
+                                        <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+                                    </div>
+                                </div>
+
                                 <button type="submit" class="flat-button">Register</button>
                             </form>
                         </div>

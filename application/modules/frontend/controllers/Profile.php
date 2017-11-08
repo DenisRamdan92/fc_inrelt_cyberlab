@@ -51,6 +51,44 @@ class Profile extends CI_Controller{
         $data['aboutus'] = $this->MainModel->aboutus();
         $this->template->load('tmp/profile','profile/infoView',$data);   
     }
+    public function insert()
+	{
+		if($this->input->method(TRUE)=='POST'):
+           
+            $id = $this->input->post("id_student");
+            $name = $this->input->post("name");
+            $place_of_birth = $this->input->post("place_of_birth");
+            $date_of_birth = $this->input->post("date_of_birth");
+            $country = $this->input->post("country");
+            $gender = $this->input->post("gender");
+            $address = $this->input->post("address");
+            $phone = $this->input->post("phone");
+            $email = $this->input->post("email");
+            $public_username = $this->input->post("public_username");
+            $last_edu = $this->input->post("last_edu");
+            $insteresting_to = $this->input->post("insteresting_to");
+            $testimonials = $this->input->post("testimonials");
+            $sugestion = $this->input->post("sugestion");
+            
+            $this->db->where('id_student',$id);
+			$this->db->update("tbl_student",array(
+                "name"=>$name,
+                "place_of_birth"=>$place_of_birth,
+                "date_of_birth"=>$date_of_birth,
+                "country"=>$country,
+                "gender"=>$gender,
+                "address"=>$address,
+                "telp"=>$phone,
+                "email"=>$email,
+                "public_username"=>$public_username,
+                "last_edu"=>$last_edu,
+                "insteresting_to"=>$insteresting_to,
+                "sugestion"=>$sugestion,
+                "testimonials" => $testimonials
+				));
+        endif;
+        echo 1;
+    }
  
 }
 ?>

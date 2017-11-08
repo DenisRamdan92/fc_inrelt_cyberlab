@@ -42,13 +42,13 @@
                         </select>
                     </label>
 
-                    <label class="modern-select">
+                    <!-- <label class="modern-select">
                          <select name="select_category" class="orderby" id="orderby1">
-                            <option value="menu_order" selected="selected">Sort by</option>
+                            <option value="*" selected="selected">Sort by</option>
                             <option value="newest">Newest</option>
                             <option value="oldest">Oldest</option>
                         </select>
-                    </label>
+                    </label> -->
                 </div>
             </div>
 
@@ -64,12 +64,12 @@
                             <div class="link"></div>
                         </div>
                         <div class="entry-image">
-                            <a href="courses-single.html"><img src="<?php echo $r->url_image;?>" alt="Course1"></a>
+                            <a href="<?php echo base_url('frontend/courses/read/').$r->id_courses;?>"><img src="<?php echo $r->url_image;?>" alt="Course1"></a>
                         </div>
                     </div><!-- /.featured-post -->
 
                     <div class="course-content">
-                        <h4><a href="courses-single.html"><?php echo $r->title_courses;?></a> </h4>
+                        <h4><a href="<?php echo base_url('frontend/courses/read/').$r->id_courses;?>"><?php echo $r->title_courses;?></a> </h4>
 
                         <div class="price">Rp.<?php echo number_format($r->price,2,',','.')?></div>    
                         
@@ -91,7 +91,16 @@
 
                         <ul class="course-meta desc">
                             <li>
-                                <h6>Rp.<?php echo number_format($r->price,2,',','.')?></h6>
+                                <h6>
+                                <?php 
+                                if ($r->price == null)
+                                {
+                                    echo "Free";
+                                } else {
+                                    echo "Rp.".number_format($r->price,2,',','.');
+                                }
+                                ?>
+                                </h6>
                                 <span> Price</span>
                             </li>
 
@@ -106,7 +115,7 @@
                             </li>
                         </ul> 
 
-                            <a class="~" href="<?php echo base_url('courses/read/').$r->id_courses;?>">SEE MORE</a>
+                            <a class="~" href="<?php echo base_url('frontend/courses/read/').$r->id_courses;?>">SEE MORE</a>
                         </div><!-- /.course-content -->
                 </div>
 
@@ -135,7 +144,7 @@
             ?>
 
                 <li>
-                    <a href="#"><?php echo $res11->title_material;?></a>
+                    <a href="javascript:void(0)" id_material="<?php echo $res11->id_material;?>" class="orderby1"><?php echo $res11->title_material;?></a>
                     <span class="numb-right">(<?php echo $res11->jumlah_courses;?>)</span>
                 </li>
 
@@ -161,9 +170,18 @@
                             <img src="<?php echo $res11->url_image;?>" alt="image">
                         </div>
                         <div class="text">
-                            <a href="<?php echo base_url('courses/read/').$res11->id_courses;?>"><?php echo $res11->title_courses;?></a>
+                            <a href="<?php echo base_url('frontend/courses/read/').$res11->id_courses;?>"><?php echo $res11->title_courses;?></a>
                             <p><?php echo $res11->title_material;?></p>
-                            <p>Rp.<?php echo number_format($res11->price,2,',','.')?></p>
+                            <p>
+                            <?php
+                                if ($res11->price == null)
+                                {
+                                    echo "Free";
+                                } else {
+                                    echo "Rp.".number_format($res11->price,2,',','.');
+                                }
+                            ?>
+                            </p>
                         </div>
                     </li>
                 <?php  endforeach;?>
@@ -218,7 +236,10 @@
     $(document).ready(function(){
         $(document).on('change','#orderby',function(){
             var values = $(this).val();
-            alert(values);
+            $('#coursesList').load("<?php echo base_url()?>frontend/courses/coursesList/"+values);
+        });
+        $(document).on('click','.orderby1',function(){
+            var values = $(this).attr('id_material');
             $('#coursesList').load("<?php echo base_url()?>frontend/courses/coursesList/"+values);
         });
     });
