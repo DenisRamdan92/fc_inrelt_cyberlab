@@ -39,6 +39,17 @@
         <script src="javascript/html5shiv.js"></script>
         <script src="javascript/respond.min.js"></script>
     <![endif]-->
+    <style type="text/css">
+        body {
+            overflow-x:hidden;
+        }
+        ::-webkit-scrollbar { 
+            display: none; 
+        }
+        ::-moz-scrollbar { 
+            display: none; 
+        }
+    </style>
 </head> 
 <body class="header-sticky">
     <div class="boxed">
@@ -74,7 +85,15 @@
                             <div class="right-bar">
                                 <ul class="flat-socials">
                                     <li class="google-plus">
-                                        <?php echo anchor('frontend/register','<i class="fa fa-lock"></i> login');?>
+                                        <?php 
+                                        if($this->session->userdata('isLoginClient') == true)
+                                        {
+                                            $stat = $this->session->userdata('name');
+                                        } else {
+                                            $stat = "Login"; 
+                                        }
+                                        ?>
+                                        <?php echo anchor('frontend/register','<i class="fa fa-lock"></i> '.$stat);?>
         							</li>
         						</ul>
                             </div>

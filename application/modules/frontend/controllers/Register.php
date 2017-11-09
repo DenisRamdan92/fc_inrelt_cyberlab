@@ -14,9 +14,11 @@ class Register extends CI_Controller{
         $data['info'] = $this->MainModel->info();
         $data['socmed'] = $this->MainModel->socmed();
         $data['aboutus'] = $this->MainModel->aboutus();
-
-        
-        $this->template->load('tmp/frontend','registerView',$data);
+        if ($this->session->userdata('name')) {
+            redirect('frontend/Profile');
+        } else {
+            $this->template->load('tmp/frontend','registerView',$data);
+        }
     }
     public function logincek()
     {

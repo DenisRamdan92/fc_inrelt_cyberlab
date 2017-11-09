@@ -25,6 +25,7 @@ class RegisterModel extends CI_Model
                 'pass' => $row['pass'],
                 'name' => $row['name'],
                 'url_foto' => $row['url_foto'],
+                'email' => $row['email'],
                 'isLoginClient' => true
             );
             $this->session->set_userdata($data);

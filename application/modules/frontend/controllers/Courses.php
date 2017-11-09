@@ -18,7 +18,7 @@ class Courses extends CI_Controller{
         $config = array();
         $config["base_url"] = base_url() . "frontend/courses/index";
         $config["total_rows"] = $this->model->record_count();
-        $config["per_page"] = 2;
+        $config["per_page"] = 10;
         $config["uri_segment"] = 4;
 
 		$config["next_tag_open"] = "<li>";
@@ -59,6 +59,7 @@ class Courses extends CI_Controller{
         $data['socmed'] = $this->MainModel->socmed();
         $data['aboutus'] = $this->MainModel->aboutus();
         $data['courses'] = $this->model->courses($id);
+
         $this->model->addView($id);
         $this->template->load('tmp/frontend','courses/coursesSingle',$data);
     }
@@ -107,6 +108,45 @@ class Courses extends CI_Controller{
             return false;
         }
     }
- 
+    public  function lessonList($id)
+    {
+        $data['info'] = $this->MainModel->info();
+        $data['socmed'] = $this->MainModel->socmed();
+        $data['aboutus'] = $this->MainModel->aboutus();
+        $data['courses'] = $this->model->courses($id);
+        
+        $this->db->where('id_courses',$id);
+        $query = $this->db->get('tbl_courses');
+        $row = $query->row_array();
+        $price = $row['price'];
+
+        if ($price == "") {
+            $this->template->load('tmp/frontend','courses/lessonList',$data);
+        }   else{
+
+                if ($this->session->userdata('isLoginClient') == true) {
+                    $this->model->payment0();
+                    $this->template->load('tmp/frontend','courses/paymentView',$data);
+                    // $this->model->send_pesan();
+                } else {
+                    $this->template->load('tmp/frontend','courses/notLogin',$data);
+                }
+            
+        }
+        if ($this->session->userdata('isLoginClient') == true) {
+            $this->model->addDetail($id,$this->session->userdata('id_student'),$price);
+        }
+
+        $this->model->addView($id);
+    }
+    public function readLesson($id)
+    {
+        $data['lesson'] = $this->model->readLesson($id);
+        $this->load->view('courses/singleLesson',$data);
+    }
+ public function send_pesan()
+ {
+    $this->model->send_pesan();
+ }
 }
 ?>

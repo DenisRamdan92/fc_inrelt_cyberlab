@@ -125,7 +125,7 @@
                                     }
                                 ?>
                                 </span></h5>
-                                <a class="flat-button bg-orange" href="#">TAKE THIS COURSES</a>
+                                <a class="flat-button bg-orange" href="<?php echo base_url() ?>frontend/courses/lessonList/<?php echo $courses['id_courses']; ?>">TAKE THIS COURSES</a>
                             </div>
                             <div class="entry-content">
                                 <h4 class="title-1 bold">ABOUT THE COURSES</h4>
