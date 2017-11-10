@@ -120,17 +120,32 @@ class Courses extends CI_Controller{
         $row = $query->row_array();
         $price = $row['price'];
 
-        if ($price == "") {
+        if ($price == "")
+        {
             $this->template->load('tmp/frontend','courses/lessonList',$data);
-        }   else{
+        }
+        else{
 
-                if ($this->session->userdata('isLoginClient') == true) {
-                    $this->model->payment0();
-                    $this->template->load('tmp/frontend','courses/paymentView',$data);
-                    // $this->model->send_pesan();
+                if ($this->session->userdata('isLoginClient') == true)
+                {
+                    $paymentNUmber = mt_rand(0,9).mt_rand(0,9).mt_rand(0,9).mt_rand(0,9)."-".mt_rand(0,9).mt_rand(0,9).mt_rand(0,9).mt_rand(0,9)."-".mt_rand(0,9).mt_rand(0,9);                   
+                    $query = $this->db->query("SELECT * FROM tbl_dtl_courses_student a LEFT JOIN tbl_confirm_payment b ON a.id_student = b.id_student where number_registration = $paymentNUmber AND a.id_student = ".$this->session->userdata('id_student')." group by number_registration");
+                    $row = $query->row_array();
+                    
+                    if ($paymentNUmber != "")
+                    {
+                        $this->model->payment0($paymentNUmber);
+                        $this->template->load('tmp/frontend','courses/paymentView',$data);
+                    }
+                    else
+                    {
+                        $this->template->load('tmp/frontend','courses/lessonList',$data);
+                    }
+  
                 } else {
                     $this->template->load('tmp/frontend','courses/notLogin',$data);
                 }
+            
             
         }
         if ($this->session->userdata('isLoginClient') == true) {

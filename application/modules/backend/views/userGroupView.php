@@ -397,14 +397,27 @@ input[type=checkbox]:not(:disabled).tabbed:focus ~ .lever::before {
 						</div>
 					</div>
 
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="panel panel-default card-view">
 							<div class="panel-heading">
 								<div class="pull-left">
 									<h6 class="panel-title txt-dark">Gallery</h6>
 								</div>
 								<div class="pull-right switch">
-		                             <label style="color:#4ab879;">OFF<input type="checkbox" name="role[]" id="gallery" value="gallery"><span class="lever switch-col-green"></span>ON<label>
+		                <label style="color:#4ab879;">OFF<input type="checkbox" name="role[]" id="gallery" value="gallery"><span class="lever switch-col-green"></span>ON<label>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div class="panel panel-default card-view">
+							<div class="panel-heading">
+								<div class="pull-left">
+									<h6 class="panel-title txt-dark">Corfirmation</h6>
+								</div>
+								<div class="pull-right switch">
+		                <label style="color:#4ab879;">OFF<input type="checkbox" name="role[]" id="confirmation" value="confirmation"><span class="lever switch-col-green"></span>ON<label>
 								</div>
 							</div>
 						</div>

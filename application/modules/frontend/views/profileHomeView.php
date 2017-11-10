@@ -16,6 +16,17 @@
 
 <section class="main-content blog-posts flat-row course-list have-sidebar">
 <div class="container">
+
+    <?php if ($this->session->flashdata('msg_error')) { ?>
+        <div class="alert margin-bottom-30">
+            <button type="button" class="close" data-dismiss="alert">
+                <span aria-hidden="true">×</span>
+                <span class="sr-only">Hilangkan</span>
+            </button>
+            <strong>Attention !</strong>   <?php echo $this->session->flashdata('msg_error'); ?> 
+        </div>
+    <?php } ?>
+
     <div class="blog-title clearfix">
         <h1 class="bold">TIME LINE</h1>
     </div>
@@ -49,7 +60,7 @@
 
                     <div class="course-content">
                         
-                        <h4><a href="<?php echo base_url() ?>frontend/courses/lessonList/<?php echo $r->id_lesson; ?>"><?php echo $r->title_courses;?></a> <p style="display:<?php echo $allow; ?>; color:#E87E04; cursor:pointer;" class="activeAcess" valueOfMoney="<?php echo number_format($r->price,2,',','.')?>" valueOfMoney-o="<?php echo $r->price?>"><b>do not have access <span class="fa fa-unlock"></span></b></p></h4>
+                        <h4><a href="<?php echo base_url() ?>frontend/courses/lessonList/<?php echo $r->id_courses; ?>"><?php echo $r->title_courses;?></a> <p style="display:<?php echo $allow; ?>; color:#E87E04; cursor:pointer;" class="activeAcess" valueOfMoney="<?php echo number_format($r->price,2,',','.')?>" valueOfMoney-o="<?php echo $r->price?>"><b>do not have access <span class="fa fa-unlock"></span></b></p></h4>
 
                         <div class="price">Rp.<?php echo number_format($r->price,2,',','.')?></div>    
                         
@@ -215,70 +226,73 @@
         </div>
         <div class="modal-body" style="padding:30px;">
             <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#profile">Payment Form</a></li>
-                <li><a data-toggle="tab" href="#menu0">Value</a></li>
-                <li><a data-toggle="tab" href="#menu1">Details</a></li>
+                <li class="active" id="tab1"><a data-toggle="tab" href="#profile">Payment Form</a></li>
+                <li id="tab2"><a data-toggle="tab" href="#menu0">Value</a></li>
+                <li id="tab3"><a data-toggle="tab" href="#menu1">Details</a></li>
             </ul>   
         
             <div class="tab-content">
-                <div id="profile" class="tab-pane fade in active">
-                    <br>
-                    <h3>Payment Form</h3>
-                    <div class="row">
-                        <div class="form-group col-sm-5">
-                            <div class="">
-                                <input type="text" class="form-control" id="confirmation-number" placeholder="Confirmation Number">
+            <?php echo form_open('frontend/profile/paymentInsert', "method='post', id='simpanform' enctype='multipart/form-data'")?>
+                    <div id="profile" class="tab-pane fade in active">
+                        <br>
+                        <h3>Payment Form</h3>
+                        <div class="row">
+                            <div class="form-group col-sm-5">
+                                <div class="">
+                                    <input type="text" class="form-control" id="confirmation-number" name="confirmation-number" placeholder="Confirmation Number" required>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group col-sm-5">
-                            <div class="">
-                                <input type="hidden" id="account-of-destination-o"> 
-                                <input type="text" class="form-control" id="account-of-destination" placeholder="Account of Destination">
+                            <div class="form-group col-sm-5">
+                                <div class="">
+                                    <input type="hidden" id="account-of-destination-o" name="account-of-destination-o"> 
+                                    <input type="text" class="form-control" id="account-of-destination" name="account-of-destination" placeholder="Account of Destination" readonly required>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group col-sm-2">
-                            <div class="">
-                                <button class="form_control" id="bankButton"><i class="fa fa-search"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="menu0" class="tab-pane fade">
-                    <br>
-                    <h3>Value</h3>
-                    <div class="row">
-                        <div class="form-group col-sm-12">
-                            <div class="input-group">
-                            <input type="hidden" id="value-of-money-o">                            
-                                <span class="input-group-addon">Rp.</span>
-                                <input type="text" class="form-control" id="value-of-money" placeholder="Values" readonly>
+                            <div class="form-group col-sm-2">
+                                <div class="">
+                                    <button class="form_control" id="bankButton"><i class="fa fa-search"></i></button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div id="menu1" class="tab-pane fade">
-                    <br>
-                    <h3>Proof of Payment</h3>
-                    <p><span class="fa fa-question"></span> upload photos to be used as proof of payment</p>                    
-                    <div class="row">
-                        <div class="form-group col-sm-12">
-                            <div class="">
-                                <input type="file" class="" id="proof-payment" placeholder="Confirmation Number">
-                            </div>
-                        </div>
-                        <div class="form-group col-sm-12">
-                            <div class="">
-                                <textarea class="form-control" name="information" id="information" cols="3" rows="3"></textarea>
+                    <div id="menu0" class="tab-pane fade">
+                        <br>
+                        <h3>Value</h3>
+                        <div class="row">
+                            <div class="form-group col-sm-12">
+                                <div class="input-group">
+                                <input type="hidden" id="value-of-money-o" name="value-of-money-o">                            
+                                    <span class="input-group-addon">Rp.</span>
+                                    <input type="text" class="form-control" id="value-of-money" name="value-of-money" placeholder="Values" readonly>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                    <div id="menu1" class="tab-pane fade">
+                        <br>
+                        <h3>Proof of Payment</h3>
+                        <p><span class="fa fa-question"></span> upload photos to be used as proof of payment</p>                    
+                        <div class="row">
+                            <div class="form-group col-sm-12">
+                                <div class="">
+                                    <input type="file" class="urlSlider" id="urlSlider" name="urlSlider" placeholder="Confirmation Number" required>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-12">
+                                <div class="">
+                                    <textarea class="form-control" name="information" id="information" cols="3" rows="3" required></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input name="send" class="black-btn" value="Confirmation" type="submit">
+                </form>
             </div>
      
-            <div class="modal-footer">
+            <!-- <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <input name="send" class="black-btn" value="Confirmation" type="submit">
-            </div>
+            </div> -->
         </div>
     </div>
 
@@ -327,6 +341,10 @@
 
 <script>
     $(document).ready(function(){
+
+        $('#menu0').hide();
+        $('#menu1').hide();
+
         $(document).on('click','.activeAcess',function(){
            var valueOfMoney =  $(this).attr('valueOfMoney');
            var valueOfMoney_o =  $(this).attr('valueOfMoney-o');
@@ -347,6 +365,21 @@
             $('#account-of-destination').val(name_rekening);
             $('#account-of-destination-o').val(number_rekening);
             $('#bankList').modal('hide');
+        });
+        $(document).on('click','#tab1',function(){
+            $('#profile').show();
+            $('#menu0').hide();
+            $('#menu1').hide();
+        });
+        $(document).on('click','#tab2',function(){
+            $('#menu0').show();
+            $('#profile').hide();
+            $('#menu1').hide();
+        });
+        $(document).on('click','#tab3',function(){
+            $('#menu1').show();
+            $('#profile').hide();
+            $('#menu0').hide();
         });
     });
 </script>

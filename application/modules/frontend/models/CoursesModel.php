@@ -85,58 +85,14 @@ class CoursesModel extends CI_Model
        $this->db->where('id_lesson',$id);
        $query = $this->db->get('tbl_lesson'); 
    }
-   public function send_pesan()
+   public function payment0($paymentNUmber)
    {
-       $idStudent = $this->session->userdata("id_student");
-       $query = $this->db->query("SELECT * FROM tbl_confirm_payment WHERE id_student = '$idStudent'");
-       $data_payment = $query->row_array();
-       $this->db->select("*");
-       $data_toko = $this->db->get("tbl_web_info")->row();
-
-       $email_send = $this->session->userdata("email");
-       $message = $data_payment['number_registration'];
-       $name = $this->session->userdata("name");
-       include_once(FCPATH."application/libraries/utils/mail.php");
-       $email_penerima = $email_send;
-       $nama_penerima = "Contact Notif";
-       $set_web_title = $data_toko->title_web;
-       $web = "";
-       $email =  $data_toko->email;
-       $name =  $data_toko->title_web;
-       $subject = "Conformation Number";
-       $mail->From = $email; // email pengirim
-       $mail->FromName = $name; // nama pengirim
-       $mail->AddAddress($email_penerima, $nama_penerima); // penerima
-       $mail->AddReplyTo($email, $name); // kirim balik reply ke
-       $mail->WordWrap = 50; // set word wrap
-       $mail->IsHTML(true);                               // send as HTML
-       $mail->Subject = $subject;
-       $mail->Body .= "Hallo, \n";
-       $mail->Body .= "This is you Confirmation Number,\n <br>";
-       $mail->Body .= "\n\n";
-       $mail->Body .= " ". $message ."\n <br><br>";
-       $mail->Body .= "\n\n <br><br>";
-       $mail->Body .= "Thank you for registration"."\n <br>";
-       $mail->Body .= "Have a good study"."\n <br>";
-       $mail->Body .= $set_web_title . "\n";
-       $mail->Body .= $web . "\n";
-       exit;
-   }
-   public function payment0()
-   {
-    $paymentNUmber = mt_rand(0,9).mt_rand(0,9).mt_rand(0,9).mt_rand(0,9)."-".mt_rand(0,9).mt_rand(0,9).mt_rand(0,9).mt_rand(0,9)."-".mt_rand(0,9).mt_rand(0,9);
     $data = array (
         "number_registration" => $paymentNUmber,
         "id_student" => $this->session->userdata('id_student')
     );
 
     $this->db->insert('tbl_confirm_payment', $data);
-
-    //sendd paymentNumber
-
-    // $this->db->where('id_student',$this->session->userdata('id_student'));
-    // $this->db->where('number_registration',$paymentNUmber);
-    // $queryConNum = $this->db->get('tbl_confirm_payment');
 
     $this->db->select("*");
     $data_toko = $this->db->get("tbl_web_info")->row();
@@ -170,9 +126,7 @@ class CoursesModel extends CI_Model
     $mail->Body .= $set_web_title . "\n";
     $mail->Body .= $web . "\n";
     $mail->send();
-    // exit;
-
-    
+  
    }
     
 }

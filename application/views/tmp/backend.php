@@ -245,6 +245,12 @@
 						</li>
 					<?php } ?>
 
+					<?php if (check_menu('confirmation')) {?>
+						<li>
+							<a  <?php echo active_url("confirmation");?> href="<?php echo base_url();?>backend/confirmation" data-toggle="collapse" data-target="#"><i class="fa fa-usd mr-10"></i>Confirmation</a>
+						</li>
+					<?php } ?>
+
 					<?php if (check_menu('contact')) {?>
 						<li>
 							<a  <?php echo active_url("contact");?> href="<?php echo base_url();?>contact" data-toggle="collapse" data-target="#"><i class="icon-phone mr-10"></i>Contact</a>

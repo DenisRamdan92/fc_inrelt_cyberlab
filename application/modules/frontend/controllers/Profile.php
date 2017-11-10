@@ -145,39 +145,32 @@ class Profile extends CI_Controller{
             $file_name = $upload_data['file_name'];
             $urlSlider = base_url()."assets/backend/img/confirmation/".$file_name;
         }
-        $query = $this->db->get('tbl_employee');
+
+        $confirmation = $this->input->post('confirmation-number');
+        $account = $this->input->post('account-of-destination-o');
+        $value = $this->input->post('value-of-money-o');
+        $information = $this->input->post('information');
+        $id_student = $this->session->userdata('id_student');
+
+        $this->db->where('id_student',$id_student);
+        $this->db->where('number_registration',$confirmation);
+        $query = $this->db->get('tbl_confirm_payment');
         $jml = $query->num_rows();
-		$row = $query->row_array();
-		
-        $name_employee = $this->input->post('name_employee');
-        $place_of_birth = $this->input->post('place_of_birth');
-        $date_of_birth = $this->input->post('date_of_birth');
-        $address = $this->input->post('address');
-        $telp = $this->input->post('telp');
-        $email = $this->input->post('email');
-        $nip = $this->input->post('nip');
-        $no_ktp = $this->input->post('no_ktp');
-        $sex = $this->input->post('sex');
-        $religion = $this->input->post('religion');
-        $education = $this->input->post('education');
-        $status = $this->input->post('status');
-        $data = array(
-            'name_employee' => $name_employee,
-            'place_of_birth' => $place_of_birth,
-            'date_of_birth' => $date_of_birth,
-            'address' => $address,
-            'telp' => $telp,
-            'email' => $email,
-            'nip' => $nip,
-            'no_ktp' => $no_ktp,
-            'sex' => $sex,
-            'religion' => $religion,
-            'education' => $education,
-            'status' => $status,
-            'url_foto' => $urlSlider
-		);
-		$this->db->update('tbl_employee',$data);
-        redirect('backend/frontend/Profile');
+        
+        if ($jml > 0) {
+            $data = array(
+                'id_bank' => $account,
+                'quantity_send' => $value,
+                'date_transfer' => mdate('%Y-%m-%d'),
+                'information' => $information,
+                'url_picture' => $urlSlider
+            );
+            $this->db->update('tbl_confirm_payment',$data);
+            $this->session->set_flashdata('msg_error',"<p style='color:#26A65B;'>Your confirmation number has been sent, please wait until one day</p>");            
+        } else {
+            $this->session->set_flashdata('msg_error',"<p style='color:#E87E04;'>An error occurred, please re-enter your registration number</p>");            
+        }
+        redirect('frontend/Profile');
     }
  
 }
